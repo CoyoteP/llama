@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" action="/signup" th:object="${signupForm}">
+  <table>
+    <tr>
+      <td><a href="#">新規会員の方はこちら</a></td>
+    </tr>
+    <tr>
+      <td><label>ログインID：<input type="text" name="memberNo"
+          size="30" maxlength="9" /></label></td>
+    </tr>
+    <tr>
+      <td><label>パスワード：<input type="text" name="password"
+          size="30" maxlength="30" /></label></td>
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      <td><input type="submit" value="ログイン" /></td>
+      <td><input type="reset" value="クリア" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
