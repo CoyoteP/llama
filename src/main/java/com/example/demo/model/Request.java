@@ -11,23 +11,28 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User implements Serializable {
+@Table(name = "request")
+public class Request implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(nullable = false)
-	private String userid;
+	private String requestId;
 	
-	private String username;
+	private String requestDate;
 	
-	private String group;
+	private String reportDate;
 	
-	private String groupNumber;
+	private String studentId;
 	
-	private String enable;
+	private String teacherId;
 	
-	private String role;
+	private String requestDocId;
+
+	private String reportDocId;
+	
+	private String consent;
+
 
 }
