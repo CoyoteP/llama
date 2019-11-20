@@ -80,12 +80,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>01</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
+                            <tr class="table-info" th:each="user:${users}">
+                                <td th:text="${user.userId}">ID</td>
+                                <td th:text="${user.className}">クラス</td>
+                                <td th:text="${user.classNumber}">番号</td>
+                                <td th:text="${user.userName}">名前</td>
+                                <td><a class="btn-sm btn-primary" href="#" role="button">確認</a>
                                 </td>
                             </tr>
                             <tr class="table-info">
@@ -95,48 +95,7 @@
                                 <td>斎藤健介</td>
                                 <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
                                 </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>01</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>01</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>01</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>01</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>01</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            
+                            </tr>                            
                         </tbody>
                     </table>
                 </div>

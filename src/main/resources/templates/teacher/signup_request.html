@@ -69,9 +69,9 @@
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
-                                <th>日付</th>
                                 <th>学籍番号</th>
                                 <th>クラス</th>
+                                <th>出席番号</th>
                                 <th>名前</th>
                                 <th>あいことば</th>
                                 <th>確認</th>
@@ -79,20 +79,11 @@
                         </thead>
                         <tbody>
                             <tr class="table-info" th:each="user:${users}">
-                                <td>2019/11/11</td>
                                 <td th:text="${user.userId}">ID</td>
                                 <td th:text="${user.className}">クラス</td>
+                                <td th:text="${user.classNumber}">出席番号</td>
                                 <td th:text="${user.userName}">名前</td>
                                 <td th:text="${user.watchWord}">あいことば</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">確認</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>2019/11/12</td>
-                                <td>20191002</td>
-                                <td>R3Ax03</td>
-                                <td>斎藤京子</td>
-                                <td>マイナビリクナビ</td>
                                 <td><a class="btn-sm btn-primary" href="#" role="button">確認</a>
                                 </td>
                             </tr>

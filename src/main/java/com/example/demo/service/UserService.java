@@ -27,6 +27,10 @@ public class UserService {
 		return user.getRole();
 	}
 	public List<User> getRequestStudents() {
+		List<User> users = userRepo.findByEnableAndRole("0","STUDENT");
+		return users;
+	}
+	public List<User> getSubmitStudents() {
 		List<User> users = userRepo.findByEnableAndRole("1","STUDENT");
 		return users;
 	}

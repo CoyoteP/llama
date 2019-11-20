@@ -20,10 +20,8 @@ public class TeacherStudentsSubmitController {
 	
 	@GetMapping("teacher/signup_request")
     public String get(Model model,Principal principal) {
-		System.out.println("aaaaaaaaaa");
 
 		List<User> users = userService.getRequestStudents();
-		System.out.println("aaaaaaaaaa" + users.size());
 		model.addAttribute("users",users);
 		return "teacher/signup_request";
 	}
