@@ -59,14 +59,14 @@ public class ReportDocService {
 		doc.setMemo(form.getMemo());
 		
 		ReportDoc result = new ReportDoc();
-		String submitType = null;
+		int submitType = 0;
 		if (reportId == 0) {
 			result = repoDocRepo.save(doc);
-			submitType = "0";
+			submitType = 0;
 		} else {
 			doc.setReportDocId(reportId);
 			result = repoDocRepo.save(doc);
-			submitType = "1";
+			submitType = 1;
 
 		}
 		Request req = new Request();
@@ -76,8 +76,11 @@ public class ReportDocService {
 		req.setTeacherId(teacher.getUserId());
 		req.setReportDocId(result.getReportDocId());
 		req.setDocType("1");
-		req.setConsent("0");
-		req.setSubmitType(submitType);
+		if(submitType == 0) {
+			req.setConsent("0");
+		}else{
+			req.setConsent("2");
+		}
 		
 		reqRepo.save(req);
 		return true;

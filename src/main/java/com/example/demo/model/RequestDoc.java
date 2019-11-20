@@ -1,6 +1,8 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,9 +26,9 @@ public class RequestDoc implements Serializable {
 	@Column(nullable = false)
 	private Integer requestDocId;
 
-	private String eventStartDate;
+	private LocalDateTime eventStartDate;
 
-	private String eventEndDate;
+	private LocalDateTime eventEndDate;
 
 	private String eventPlace;
 
@@ -36,7 +38,7 @@ public class RequestDoc implements Serializable {
 
 	private String corporateOneProgression;
 
-	private String corporateOTwoName;
+	private String corporateTwoName;
 
 	private String corporateTwoProgression;
 	
@@ -52,13 +54,13 @@ public class RequestDoc implements Serializable {
 
 	private String corporateFiveProgression;
 
-	private String leaveDate;
+	private LocalDateTime leaveDate;
 
-	private String absentStartDate;
+	private LocalDate absentStartDate;
 
-	private String absentEndDate;
+	private LocalDate absentEndDate;
 
-	private String delayDate;
+	private LocalDateTime delayDate;
 
 	private String memo;
 

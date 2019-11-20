@@ -24,14 +24,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(WebSecurity web) {
-		web.ignoring().antMatchers("/css/**", "/image/**", "/js/**", "/webjars/**");
+		web.ignoring().antMatchers("/css/**", "/img/**", "/js/**", "/webjars/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		//http.authorizeRequests().antMatchers("/teacher/**").hasRole("TEACHER").antMatchers("/student/**").hasRole("STUDENT").antMatchers("/signup").permitAll().anyRequest().authenticated();
-		http.authorizeRequests().antMatchers("/signup").permitAll().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/signup","/endpoint","/topic").permitAll().anyRequest().authenticated();
 
 		http.formLogin().loginProcessingUrl("/auth").loginPage("/login").failureUrl("/login?error")
 				.defaultSuccessUrl("/default", true).usernameParameter("userId").passwordParameter("password").and()

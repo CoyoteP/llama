@@ -1,0 +1,35 @@
+@charset "UTF-8";
+body,
+p,
+th,
+td,
+input,
+button,
+select,
+textarea {
+  font-family: "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, sans-serif
+}
+
+form .required label:after {
+  border-radius: 0.25em;
+  color: #fff;
+  display: inline;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.1em 0.5em;
+  margin-left: 0.7em;
+  text-align: center;
+  vertical-align: baseline;
+  white-space: nowrap;
+  background-color: #d9534f;
+  content: '必須'
+}
+
+.add-hyphen:before {
+  content: '-';
+  display: block;
+  position: absolute;
+  top: 0.3em;
+  left: -0.3em
+}

@@ -30,7 +30,7 @@ public class ReportDocForm implements Serializable {
 
 	private String knownMethod;
 
-    @DateTimeFormat(pattern = "yyyy/MM/dd'T'HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime eventDate;
 
 	private String eventPlace;

@@ -63,6 +63,7 @@ public class StudentRequestController {
 		model.addAttribute("contents",CONTENTS_ITEMS);
 		model.addAttribute("classTeacherNames",CLASS_TEACHER_NAMES_ITEMS);
 		model.addAttribute("subjectTeacherNames",SUBJECT_TEACHER_NAMES_ITEMS);
+		requestDocForm.setClassTeacherName(userService.getClassTeacher(principal.getName()));
 		return "student/request";
 	}
 	@PostMapping("student/request_check")
@@ -79,7 +80,7 @@ public class StudentRequestController {
 
 	@PostMapping("student/request")
 	public String post(Model model,Principal principal, @ModelAttribute("requestDocForm")RequestDocForm form,SessionStatus status) {
-		//reqDocService.request(form,0,principal.getName());
+		reqDocService.request(form,0,principal.getName());
 		status.setComplete();
 		return "student/home";
 	}

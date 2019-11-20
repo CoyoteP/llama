@@ -42,7 +42,6 @@ public class Request implements Serializable {
 	
 	private String consent;
 	
-	private String submitType;
 
 
 

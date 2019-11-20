@@ -19,8 +19,8 @@ public class TeacherReportLogController {
 	
 	@GetMapping("teacher/report_log")
     public String get(Model model,Principal principal) {
-		List<ReportDoc> report = repoDocRepo.getLogReports();
-		model.addAttribute("reports",report);
+		//List<ReportDoc> report = repoDocRepo.getLogReports();
+		//model.addAttribute("reports",report);
 		return "teacher/report_log";
 	}
 }
