@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,13 +14,20 @@ import com.example.demo.model.User;
 public class UserService {
 	@Autowired
 	UserRepository userRepo;
-	
-	public boolean SaveOfStudent(User user) {
-		//user.setRole("student");
-		if(userRepo.save(user) != null) {
+	public boolean save(User user) {
+		user.setEnable("0");
+		if (userRepo.save(user) != null) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
+	}
+	public String getRole(String userId) {
+		User user = userRepo.findByUserId(userId);
+		return user.getRole();
+	}
+	public List<User> getRequestStudents() {
+		List<User> users = userRepo.findByEnableAndRole("1","STUDENT");
+		return users;
 	}
 }

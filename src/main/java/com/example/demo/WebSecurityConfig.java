@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -29,25 +30,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers("/teacher/**").hasRole("TEACHER").antMatchers("/student/**").hasRole("STUDENT").antMatchers("/signup").permitAll().anyRequest().authenticated();
-		http.formLogin().loginProcessingUrl("/auth").loginPage("/signin").failureUrl("/signin?error")
-				.defaultSuccessUrl("/home", false).usernameParameter("userid").passwordParameter("password").and()
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/signout")).logoutSuccessUrl("/singin")
+		//http.authorizeRequests().antMatchers("/teacher/**").hasRole("TEACHER").antMatchers("/student/**").hasRole("STUDENT").antMatchers("/signup").permitAll().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/signup").permitAll().anyRequest().authenticated();
+
+		http.formLogin().loginProcessingUrl("/auth").loginPage("/login").failureUrl("/login?error")
+				.defaultSuccessUrl("/default", false).usernameParameter("userId").passwordParameter("password").and()
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/signout")).logoutSuccessUrl("/login")
 				.deleteCookies("JSESSIONID").invalidateHttpSession(true).permitAll();
-		http.sessionManagement().invalidSessionUrl("/signin");
+		http.sessionManagement().invalidSessionUrl("/login");
 	}
 
 	// ポイント3
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource)
-				.usersByUsernameQuery("select userid, password, enable from users where userid = ?")
+				.usersByUsernameQuery("select user_id, password, enable from users where user_id = ?")
 				.authoritiesByUsernameQuery(
-	                       "select userid, role from users where userid = ?");
+	                       "select user_id, role from users where user_id = ?");
 	}
 
 	@Bean
     PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        //return new BCryptPasswordEncoder();
+		return NoOpPasswordEncoder.getInstance();
+
     }
 }

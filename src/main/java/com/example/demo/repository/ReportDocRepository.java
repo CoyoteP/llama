@@ -7,11 +7,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.model.RequestDoc;
+import com.example.demo.model.ReportDoc;
 import com.example.demo.model.User;
 
 @Transactional
 @Repository
-public interface RequestDocRepository extends JpaRepository<RequestDoc, String> {
+public interface ReportDocRepository extends JpaRepository<ReportDoc, String> {
+
 
 }

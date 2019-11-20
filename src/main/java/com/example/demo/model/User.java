@@ -18,13 +18,17 @@ public class User implements Serializable {
 	
 	@Id
 	@Column(nullable = false)
-	private String userid;
+	private String userId;
 	
-	private String username;
+	private String userName;
 	
-	private String group;
+	private String password;
 	
-	private String groupNumber;
+	private String className;
+	
+	private String classNumber;
+	
+	private String watchWord;
 	
 	private String enable;
 	

@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,17 +14,12 @@ import com.example.demo.model.User;
 @Transactional
 @Repository
 public interface UserRepository extends JpaRepository<User, String> {
-
+	User findByUserId(@Param("userid") String userid);
+	
 	@Modifying
-	@Query("update User u set u.password = :password where u.userid = :userid ")
-	int updateByUserid(@Param("password") String password, @Param("userid") String userid);
+	@Query("select userId,userName,className,classNumber,watchWord from User where role = 'STUDENT' and enable = '0' ")
+	List<User> findRequestUsersColumn();		
 
-	@Modifying
-	@Query("delete from User u where u.userid = :userid ")
-	int deleteByUserid(@Param("userid") String userid);
-
-	long countByUseridIsAndPasswordIs(@Param("userid") String userid, @Param("password") String password);
-
-	long countByUserid(@Param("userid") String userid);
+	List<User> findByEnableAndRole(@Param("enable") String enable, @Param("role") String role );
 
 }

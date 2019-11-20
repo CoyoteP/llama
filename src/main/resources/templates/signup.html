@@ -1,31 +1,78 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form method="post" action="/signup" th:object="${signupForm}">
-  <table>
-    <tr>
-      <td><a href="#">新規会員の方はこちら</a></td>
-    </tr>
-    <tr>
-      <td><label>ログインID：<input type="text" name="memberNo"
-          size="30" maxlength="9" /></label></td>
-    </tr>
-    <tr>
-      <td><label>パスワード：<input type="text" name="password"
-          size="30" maxlength="30" /></label></td>
-    </tr>
-  </table>
+<html xmlns:th="http://www.thymeleaf.org">
 
-  <table>
-    <tr>
-      <td><input type="submit" value="ログイン" /></td>
-      <td><input type="reset" value="クリア" /></td>
-    </tr>
-  </table>
-</form>
-</body>
-</html>
+<head>
+    <meta charset="UTF-8">
+    <link href="./css/singup.css" rel="stylesheet">
+    <script src="./js/login.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>ホーム画面</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <link href="../css/open-iconic-bootstrap.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>ホーム画面</title>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row h-100">
+                <div class="col-6 login-side h-100">
+                    <h1 class="text-center site-title">Llama</h1>
+                </div>
+                <div class="col-6">
+
+                    <div class="container">
+                        <div class="pt-5">
+                            <h3 class="text-center w-100">就活支援システム登録申請</h3>
+                        </div>
+                        <div id="output"></div>
+                        <div class="form-box row pt-3">
+                            <form th:action="@{/signup}" th:object="${user}" method="post" class="offset-2 col-8">
+                                学籍番号
+                                <input th:field="*{userId}" type="text" placeholder="s20160001">
+                                名前
+                                <input th:field="*{userName}" type="text" placeholder="名前">
+                                パスワード
+                                <input th:field="*{password}" type="password" class="pt-1" placeholder="password">
+                                <label class="text-left">パスワード再入力</label>
+                                <input name="password-retype" type="password" placeholder="password再入力">
+                                <label class="text-left">クラス</label>
+                                <input th:field="*{className}" class="col-4" type="text" placeholder="R4A1">
+                                <label class="text-left">出席番号</label>
+                                <input th:field="*{classNumber}" class="col-2" type="text" placeholder="14">
+								<label class="text-left">あいことば</label>
+                                <input th:field="*{watchWord}" type="text" placeholder="あいことば">
+                                <div class="btn-group btn-group-toggle mx-auto w-100 pt-2" data-toggle="buttons">
+                                    <label class="btn btn-secondary active">
+                                        <input type="radio" name="options" id="option1" autocomplete="off" value="STUDENT" th:field="*{role}" checked> 学生
+                                    </label>
+                                    
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="options" id="option2" autocomplete="off" value="TEACHER" th:field="*{role}"> 教員
+                                    </label>
+                                </div>
+                                <button class="btn btn-info btn-block login" type="submit">登録申請</button>
+                                <a th:href="@{/login}">ログイン画面へ</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+    </html>
