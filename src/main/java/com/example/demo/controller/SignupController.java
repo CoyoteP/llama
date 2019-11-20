@@ -25,10 +25,10 @@ public class SignupController {
 	@PostMapping("signup")
 	public String post(Model model,@ModelAttribute User user) {
 		if (userService.save(user)) {
-			model.addAttribute("success", "ユーザ登録要求を行いました。");
+			model.addAttribute("success", "ユーザ登録要求の承認を行いました。");
 			System.out.println("success");
 		} else {
-			model.addAttribute("error", "ユーザ登録に失敗しました。");
+			model.addAttribute("error", "ユーザ登録の承認に失敗しました。");
 			System.out.println("error");
 		}
 		return "login";

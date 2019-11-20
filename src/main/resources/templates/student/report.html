@@ -1,10 +1,271 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/open-iconic-bootstrap.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>報告書作成</title>
+</head>
+
+<body>
+    <div id="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img alt="ブランド" src="../img/bootstrap-solid.svg" width="45" height="30" />
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/home}">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/chat}">チャット</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/request}">申請書作成</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/student/report}">報告書作成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/report_log}">報告書倉庫</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">辻 雄文</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> <span class="oi oi-account-logout"></span>
+                            <i class="fa fa-sign-out"></i> ログアウト</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="row pt-5">
+                    <h3>報告書作成</h3>
+                </div>
+                <div class="form pt-1">
+                    <form>
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">企業名</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="株式会社田中システムズ">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">知った方式</label>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    学校斡旋
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    斡旋サイト
+                                </label>
+
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    企業ホームページ
+                                </label>
+
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    新聞・雑誌
+                                </label>
+
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    ジョブカフェ等
+                                </label>
+
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck6">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    その他（メモに記述）
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">イベント日時</label>
+                            <input type="date" class="form-control " id="exampleInputPassword1">
+                            <input type="time" class="form-control" id="exampleInputPassword1">
+                            <label>から</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">イベント施設名</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="XXXビル y階 ">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">通知日数</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">通知対象</label>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    本人
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    学校
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">通知方法</label>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    電話
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    郵送
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    メール
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    Web
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">何次試験</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">試験内容</label>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    SPI
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    CAB/GAB
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    職業適性
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    クレペリン
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    一般常識
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    専門知識
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    作文
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    その他（メモに記述）
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">面接内容</label>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    個人面接
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    集団面接
+                                </label>
+                            </div>
+                            <div class="form-check custom-control custom-checkbox">
+                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
+                                <label class="form-check-label custom-control-label" for="defaultCheck1">
+                                    グループディスカッション・グループワーク
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">メモ</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="その他の内容、作文のテーマ、面接官の人数、集団面接の人数、グループ作業のテーマ、面接内容など"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleSelect1exampleFormControlSelect1">承認先(担任)</label>
+
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>佐藤 隆</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <button type="submit" class="btn btn-primary offset-10">送信する</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>

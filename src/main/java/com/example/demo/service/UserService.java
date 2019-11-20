@@ -34,4 +34,11 @@ public class UserService {
 		List<User> users = userRepo.findByEnableAndRole("1","STUDENT");
 		return users;
 	}
+	public boolean enable(String userId) {
+		if (userRepo.enable(userId) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

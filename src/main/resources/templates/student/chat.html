@@ -1,11 +1,213 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <link href="../css/open-iconic-bootstrap.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="../css/chat.css">
+    <title>チャット</title>
 </head>
-<body>
 
-</body>
-</html>
+<body>
+    <div id="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img alt="ブランド" src="../img/bootstrap-solid.svg" width="45" height="30" />
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/home}">ホーム</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/student/chat}">チャット</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/request}">申請書作成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/report}">報告書作成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/report_log}">報告書倉庫</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">辻 雄文</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> <span class="oi oi-account-logout"></span>
+                            <i class="fa fa-sign-out"></i> ログアウト</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="wrapper">
+        <div class="chat-container">
+            <div class="left">
+                <div class="top">
+                    <input type="text" placeholder="Search" />
+                    <a href="javascript:;" class="search"></a>
+                </div>
+                <ul class="people">
+                    <li class="person" data-chat="person1">
+                        <span class="name">斎藤 一</span><br />
+                        <span class="time">2:09 PM</span><br />
+                        <span class="preview">申請書はメモ欄にイベント名を書いてください。</span>
+                    </li>
+                    <li class="person" data-chat="person2">
+                        <span class="name">佐藤 紘一</span><br />
+                        <span class="time">1:44 PM</span><br />
+                        <span class="preview">了解です。</span>
+                    </li>
+                    <li class="person" data-chat="person3">
+                        <span class="name">高橋 雄三</span><br />
+                        <span class="time">2:09 PM</span><br />
+                        <span class="preview">いいですよ</span>
+                    </li>
+                    <li class="person" data-chat="person4">
+                        <span class="name">田中 聡</span><br />
+                        <span class="time">2:09 PM</span><br />
+                        <span class="preview">積雪に備え少し早く出たいです。</span>
+                    </li>
+                    <li class="person" data-chat="person5">
+                        <span class="name">佐藤 楓</span><br />
+                        <span class="time">2:09 PM</span><br />
+                        <span class="preview">お土産よろしくね</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="top"><span>To: <span class="name">斎藤　一</span></span></div>
+                <div class="chat" data-chat="person1">
+                    <div class="bubble you">
+                        申請書はメモ欄にイベント名を書いてください。
+                    </div>
+                </div>
+                <div class="chat" data-chat="person2">
+                    <div class="conversation-start">
+                        <span>Today, 5:38 PM</span>
+                    </div>
+                    <div class="bubble you">
+                        Hello, can you hear me?
+                    </div>
+                    <div class="bubble you">
+                        I'm in California dreaming
+                    </div>
+                    <div class="bubble me">
+                        ... about who we used to be.
+                    </div>
+                    <div class="bubble me">
+                        Are you serious?
+                    </div>
+                    <div class="bubble you">
+                        When we were younger and free...
+                    </div>
+                    <div class="bubble you">
+                        I've forgotten how it felt before
+                    </div>
+                </div>
+                <div class="chat" data-chat="person3">
+                    <div class="conversation-start">
+                        <span>Today, 3:38 AM</span>
+                    </div>
+                    <div class="bubble you">
+                        Hey human!
+                    </div>
+                    <div class="bubble you">
+                        Umm... Someone took a shit in the hallway.
+                    </div>
+                    <div class="bubble me">
+                        ... what.
+                    </div>
+                    <div class="bubble me">
+                        Are you serious?
+                    </div>
+                    <div class="bubble you">
+                        I mean...
+                    </div>
+                    <div class="bubble you">
+                        It’s not that bad...
+                    </div>
+                    <div class="bubble you">
+                        But we’re probably gonna need a new carpet.
+                    </div>
+                </div>
+                <div class="chat" data-chat="person4">
+                    <div class="conversation-start">
+                        <span>Yesterday, 4:20 PM</span>
+                    </div>
+                    <div class="bubble me">
+                        Hey human!
+                    </div>
+                    <div class="bubble me">
+                        Umm... Someone took a shit in the hallway.
+                    </div>
+                    <div class="bubble you">
+                        ... what.
+                    </div>
+                    <div class="bubble you">
+                        Are you serious?
+                    </div>
+                    <div class="bubble me">
+                        I mean...
+                    </div>
+                    <div class="bubble me">
+                        It’s not that bad...
+                    </div>
+                </div>
+                <div class="chat" data-chat="person5">
+                    <div class="conversation-start">
+                        <span>Today, 6:28 AM</span>
+                    </div>
+                    <div class="bubble you">
+                        Wasup
+                    </div>
+                    <div class="bubble you">
+                        Wasup
+                    </div>
+                    <div class="bubble you">
+                        Wasup for the third time like is <br />you blind bitch
+                    </div>
+
+                </div>
+                <div class="chat" data-chat="person6">
+                    <div class="conversation-start">
+                        <span>Monday, 1:27 PM</span>
+                    </div>
+                    <div class="bubble you">
+                        So, how's your new phone?
+                    </div>
+                    <div class="bubble you">
+                        You finally have a smartphone :D
+                    </div>
+                    <div class="bubble me">
+                        Drake?
+                    </div>
+                    <div class="bubble me">
+                        Why aren't you answering?
+                    </div>
+                    <div class="bubble you">
+                        howdoyoudoaspace
+                    </div>
+                </div>
+                <div class="write">
+                    <input type="text" />
+                    <a href="javascript:;" class="write-link send"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="../js/chat.js"></script>
+
+</body></html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="../css/open-iconic-bootstrap.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>申請書確認</title>
+</head>
+
+<body>
+    <div id="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img alt="ブランド" src="../img/bootstrap-solid.svg" width="45" height="30" />
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/home}">ホーム</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/chat}">チャット</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/student/request}">申請書作成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/report}">報告書作成</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/report_log}">報告書倉庫</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">辻 雄文</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> <span class="oi oi-account-logout"></span>
+                            <i class="fa fa-sign-out"></i> ログアウト</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="row pt-5">
+                    <h3>申請書確認</h3>
+                </div>
+                <div class="row pt-5">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">企業名：</th>
+                                <td class="col-7 text-center">田中システムズ</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">知った方式:</th>
+                                <td class="col-7 text-center">企業HP</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">イベント日時:</th>
+                                <td class="col-7 text-center">2020年8月22日 15時30分</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">イベント場所:</th>
+                                <td class="col-7 text-center">赤坂プリンスホテル 5階</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">通知日数:</th>
+                                <td class="col-7 text-center">4日後</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">通知先:</th>
+                                <td class="col-7 text-center">本人</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">何次試験:</th>
+                                <td class="col-7 text-center">田中システムズ</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">試験内容（Multi）:</th>
+                                <td class="col-7 text-center"></td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">面接内容（Multi）:</th>
+                                <td class="col-7 text-center">グループディスカッション</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">メモ</th>
+                                <td class="col-7 text-center">グループディスカッションのテーマ：円形歩道橋の廃止<br />
+                                グループディスカッションの人数：50人</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">申請先:</th>
+                                <td class="col-7 text-center">田中 聡</td>
+                            </tr>
+                            <tr class="row pt-5">
+                                <td class="offset-1 col-5 text-center"><button type="button" class="btn btn-light">　修正　</button>
+                                    </td>
+                                <td class="col-5 text-center"><button type="button" class="btn btn-primary">　完了　</button></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

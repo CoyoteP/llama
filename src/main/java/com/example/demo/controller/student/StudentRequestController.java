@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class StudentRequestController {
 	@GetMapping("student/request")
     public String get(Model model,Principal principal) {
-		return "request";
+		return "student/request";
 	}
 }

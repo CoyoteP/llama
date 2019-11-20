@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class StudentReportLogController {
-	@GetMapping("student/log")
+	@GetMapping("student/report_log")
     public String get(Model model,Principal principal) {
-		return "log";
+		return "student/report_log";
 	}
 }

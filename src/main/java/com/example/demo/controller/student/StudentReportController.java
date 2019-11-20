@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class StudentReportController {
 	@GetMapping("student/report")
     public String get(Model model,Principal principal) {
-		return "report";
+		return "student/report";
 	}
 }

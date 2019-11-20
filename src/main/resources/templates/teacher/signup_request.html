@@ -84,7 +84,9 @@
                                 <td th:text="${user.classNumber}">出席番号</td>
                                 <td th:text="${user.userName}">名前</td>
                                 <td th:text="${user.watchWord}">あいことば</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">確認</a>
+                                <td><form th:action="@{signup_request}" method="post">
+                                <input type="hidden" name="studentId" th:value="${user.userId}" />
+                                <input type="submit" class="btn-sm btn-primary" ></form>	
                                 </td>
                             </tr>
                         </tbody>

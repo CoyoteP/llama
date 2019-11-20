@@ -22,4 +22,8 @@ public interface UserRepository extends JpaRepository<User, String> {
 
 	List<User> findByEnableAndRole(@Param("enable") String enable, @Param("role") String role );
 
+	@Modifying
+	@Query("update User u set u.enable = '1' where u.userId = :userId ")
+	int enable(@Param("userId") String userId);
+
 }
