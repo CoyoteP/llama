@@ -22,7 +22,7 @@ public class RequestDoc implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_doc_id_seq")
     @SequenceGenerator(name = "request_doc_id_seq", sequenceName = "request_doc_id_seq", allocationSize = 1)
 	@Column(nullable = false)
-	private String requestDocId;
+	private Integer requestDocId;
 
 	private String eventStartDate;
 

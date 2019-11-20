@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,21 @@ public class UserService {
 		} else {
 			return false;
 		}
+	}
+	public List<String> getAllTeacherName() {
+		List<User> teachers = userRepo.findByEnableAndRole("1","TEACHER");
+		List<String> teacherNames = new ArrayList<String>();
+		for(User user:teachers) {
+			teacherNames.add(user.getUserName());
+		}
+		return teacherNames;
+	}
+	public String getClassTeacher(String userId) {
+		User student = userRepo.findByUserId(userId);
+		System.out.println(student.getUserName());
+		User teacher = userRepo.findByClassNameAndRole(student.getClassName(),"TEACHER");
+		System.out.println(teacher.getUserName());
+
+		return teacher.getUserName();
 	}
 }

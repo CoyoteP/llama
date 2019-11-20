@@ -56,57 +56,106 @@
                     <h3>申請書確認</h3>
                 </div>
                 <div class="row pt-5">
-                    <table class="table table-borderless">
+                    <table class="table table-borderless" th:object="${requestDocForm}">
                         <tbody>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">企業名：</th>
-                                <td class="col-7 text-center">田中システムズ</td>
-                            </tr>
+                                <th class="offset-1 col-3 text-right">イベント開始日時:</th>
+                                <td class="col-7 text-center h5"
+									th:text="*{#temporals.format(eventStartDate, 'yyyy/MM/dd HH:mm')}"></td>
+							</tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">知った方式:</th>
-                                <td class="col-7 text-center">企業HP</td>
-                            </tr>
-                            <tr class="row">
-                                <th class="offset-1 col-3 text-right">イベント日時:</th>
-                                <td class="col-7 text-center">2020年8月22日 15時30分</td>
-                            </tr>
+                                <th class="offset-1 col-3 text-right">イベント終了日時:</th>
+                                <td class="col-7 text-center h5"
+									th:text="*{#temporals.format(eventEndDate, 'yyyy/MM/dd HH:mm')}"></td>
+							</tr>
                             <tr class="row">
                                 <th class="offset-1 col-3 text-right">イベント場所:</th>
-                                <td class="col-7 text-center">赤坂プリンスホテル 5階</td>
+								<td class="col-7 text-center h5" th:text="*{eventPlace}">田中システムズ</td>
                             </tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">通知日数:</th>
-                                <td class="col-7 text-center">4日後</td>
+                                <th class="offset-1 col-3 text-right">内容:</th>
+                                <td class="col-7 text-center h5" th:each="c : *{Content}"
+									th:text="${c}"></td>
                             </tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">通知先:</th>
-                                <td class="col-7 text-center">本人</td>
+                                <th class="offset-1 col-3 text-right">会社名1:</th>
+								<td class="col-7 text-center h5" th:text="*{corporateOneName}">田中システムズ</td>
                             </tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">何次試験:</th>
-                                <td class="col-7 text-center">田中システムズ</td>
+                                <th class="offset-1 col-3 text-right">会社1進める:</th>
+                                <td class="col-7 text-center">進める</td>
                             </tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">試験内容（Multi）:</th>
-                                <td class="col-7 text-center"></td>
+                                <th class="offset-1 col-3 text-right">会社名2:</th>
+								<td class="col-7 text-center h5" th:text="*{corporateTwoName}">田中システムズ</td>
                             </tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">面接内容（Multi）:</th>
-                                <td class="col-7 text-center">グループディスカッション</td>
+                                <th class="offset-1 col-3 text-right">会社2進める:</th>
+                                <td class="col-7 text-center">進める</td>
                             </tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">メモ</th>
-                                <td class="col-7 text-center">グループディスカッションのテーマ：円形歩道橋の廃止<br />
-                                グループディスカッションの人数：50人</td>
+                                <th class="offset-1 col-3 text-right">会社名3:</th>
+								<td class="col-7 text-center h5" th:text="*{corporateThreeName}">田中システムズ</td>
                             </tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">申請先:</th>
-                                <td class="col-7 text-center">田中 聡</td>
+                                <th class="offset-1 col-3 text-right">会社3進める:</th>
+                                <td class="col-7 text-center">進める</td>
                             </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">会社名4:</th>
+								<td class="col-7 text-center h5" th:text="*{corporateFourName}">田中システムズ</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">会社4進める:</th>
+                                <td class="col-7 text-center">進める</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">会社名5:</th>
+								<td class="col-7 text-center h5" th:text="*{corporateFiveName}">田中システムズ</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">会社5進める:</th>
+                                <td class="col-7 text-center">進める</td>
+                            </tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">早退日時</th>
+                                <td class="col-7 text-center h5"
+									th:text="*{#temporals.format(leaveDate, 'yyyy/MM/dd HH:mm')}"></td>
+							</tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">欠席開始日</th>
+                                <td class="col-7 text-center h5"
+									th:text="*{#temporals.format(absentStartDate, 'yyyy/MM/dd')}"></td>
+							</tr>
+							 <tr class="row">
+                                <th class="offset-1 col-3 text-right">欠席開始日</th>
+                                <td class="col-7 text-center h5"
+									th:text="*{#temporals.format(absentEndDate, 'yyyy/MM/dd')}"></td>
+							</tr>
+                            <tr class="row">
+                                <th class="offset-1 col-3 text-right">遅刻日時</th>
+                                <td class="col-7 text-center h5"
+									th:text="*{#temporals.format(delayDate, 'yyyy/MM/dd HH:mm')}"></td>
+							</tr>
+                            <tr class="row">
+								<th class="offset-1 col-3 text-right">メモ</th>
+								<td class="col-7 text-center h5" th:utext="*{memo} ?: _"></td>
+							</tr>
+                            <tr class="row">
+								<th class="offset-1 col-3 text-right">申請先(担任):</th>
+								<td class="col-7 text-center h5" th:text="*{ClassTeacherName}"></td>
+							</tr>
+							<tr class="row">
+								<th class="offset-1 col-3 text-right">申請先(教科担任):</th>
+								<td class="col-7 text-center h5" th:text="*{subjectTeacherName}"></td>
+							</tr>
                             <tr class="row pt-5">
                                 <td class="offset-1 col-5 text-center"><button type="button" class="btn btn-light">　修正　</button>
                                     </td>
-                                <td class="col-5 text-center"><button type="button" class="btn btn-primary">　完了　</button></td>
+                                <td class="col-5 text-center"><form th:action="@{/student/request}"
+										method="post">
+										<button type="submit" class="btn btn-primary">申請</button>
+									</form>　</button></td>
                             </tr>
 
                         </tbody>

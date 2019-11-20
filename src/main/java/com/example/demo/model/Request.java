@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,21 +24,26 @@ public class Request implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "request_id_seq")
     @SequenceGenerator(name = "request_id_seq", sequenceName = "request_id_seq", allocationSize = 1)
 	@Column(nullable = false)
-	private String requestId;
+	private Integer requestId;
 	
-	private String requestDate;
+	private Date requestDate;
 	
-	private String reportDate;
+	private Date submitDate;
 	
 	private String studentId;
 	
 	private String teacherId;
 	
-	private String requestDocId;
+	private Integer requestDocId;
 
-	private String reportDocId;
+	private Integer reportDocId;
+	
+	private String docType;
 	
 	private String consent;
+	
+	private String submitType;
+
 
 
 }

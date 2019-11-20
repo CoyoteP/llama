@@ -58,205 +58,98 @@
                     <h3>報告書作成</h3>
                 </div>
                 <div class="form pt-1">
-                    <form>
+                    <form th:action="@{/student/report_check}" th:object="${reportDocForm}" method="post">
                         <div class="form-group">
                             <div class="form-group">
-                                <label for="exampleInputPassword1">企業名</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="株式会社田中システムズ">
-                            </div>
-
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">知った方式</label>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    学校斡旋
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    斡旋サイト
-                                </label>
-
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    企業ホームページ
-                                </label>
-
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    新聞・雑誌
-                                </label>
-
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    ジョブカフェ等
-                                </label>
-
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck6">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    その他（メモに記述）
-                                </label>
-
+                                <label><h5>企業名</h5></label>
+                                <input type="text" class="form-control" id="inputText" name="corporateName" th:field="*{corporateName}" placeholder="株式会社田中システムズ"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">イベント日時</label>
-                            <input type="date" class="form-control " id="exampleInputPassword1">
-                            <input type="time" class="form-control" id="exampleInputPassword1">
-                            <label>から</label>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">イベント施設名</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="XXXビル y階 ">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">通知日数</label>
-                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">通知対象</label>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    本人
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    学校
-                                </label>
+            				<label class="control-label"><h5>知った方式</h5></label>
+            					<div class="custom-control custom-radio" th:each="item : ${knownMethods}">
+              					
+                					<input type="radio" class="custom-control-input" name="fradio" th:value="${item.value}" th:field="*{knownMethod}"></input>
+	              						<label class="custom-control-label" th:for="${#ids.prev('knownMethod')}"　th:text="${item.key}"></label>
+              						
+            					</div>
+            				<span th:if="${#fields.hasErrors('knownMethod')}" th:errors="*{knownMethod}" class="help-block">error!</span>
+        				</div>
+        				<div class="form-group">
+                            <label><h5>イベント日時</h5></label>
+            				<input type="datetime-local" class="form-control" id="eventDate" name="eventDate" th:field="*{eventDate}" />
+            				<span th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}" class="help-block">error!</span>
+          				</div>
+                       <div class="form-group">
+                            <div class="form-group">
+                                <label><h5>イベント施設名</h5></label>
+                                <input type="text" class="form-control" id="eventPlace" name="eventPlace" th:field="*{eventPlace}" placeholder="EDCタワー 100階"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">通知方法</label>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    電話
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    郵送
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    メール
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    Web
-                                </label>
+                            <div class="form-group">
+                                <label><h5>通知日数</h5></label>
+                                <input type="number" class="form-control" id="noticeDays" name="noticeDays" th:field="*{noticeDays}" placeholder="1"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">何次試験</label>
-                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="">
-                        </div>
+            				<label class="control-label"><h5>通知対象</h5></label>
+            					<div class="custom-control custom-radio" th:each="item : ${noticeTargets}">
+              					
+                					<input type="radio" class="custom-control-input" name="noticeTarget" th:value="${item.value}" th:field="*{noticeTarget}"></input>
+	              						<label class="custom-control-label" th:for="${#ids.prev('noticeTarget')}"　th:text="${item.key}"></label>
+              						
+            					</div>
+            				<span th:if="${#fields.hasErrors('noticeTarget')}" th:errors="*{noticeTarget}" class="help-block">error!</span>
+        				</div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">試験内容</label>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    SPI
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    CAB/GAB
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    職業適性
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    クレペリン
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    一般常識
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    専門知識
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    作文
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    その他（メモに記述）
-                                </label>
+            				<label class="control-label"><h5>通知方式</h5></label>
+            					<div class="custom-control custom-radio" th:each="item : ${noticeMethods}">
+              					
+                					<input type="radio" class="custom-control-input" name="noticeMethod" th:value="${item.value}" th:field="*{noticeMethod}"></input>
+	              						<label class="custom-control-label" th:for="${#ids.prev('noticeMethod')}"　th:text="${item.key}"></label>
+              						
+            					</div>
+            				<span th:if="${#fields.hasErrors('noticeMethod')}" th:errors="*{noticeMethod}" class="help-block">error!</span>
+        				</div>
+        				<div class="form-group">
+                            <div class="form-group">
+                                <label><h5>通知日数</h5></label>
+                                <input type="number" class="form-control" id="examTimes" name="examTimes" th:field="*{examTimes}" placeholder="1"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">面接内容</label>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    個人面接
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    集団面接
-                                </label>
-                            </div>
-                            <div class="form-check custom-control custom-checkbox">
-                                <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
-                                <label class="form-check-label custom-control-label" for="defaultCheck1">
-                                    グループディスカッション・グループワーク
-                                </label>
-                            </div>
+            				<label class="control-label"><h5>試験内容</h5></label>
+            					<div class="custom-control custom-checkbox" th:each="item : ${examContents}">
+              					
+                					<input type="checkbox" class="custom-control-input" name="examContent" th:value="${item.value}" th:field="*{examContent}"></input>
+	              						<label class="custom-control-label" th:for="${#ids.prev('examContent')}"　th:text="${item.key}"></label>
+              						
+            					</div>
+            				<span th:if="${#fields.hasErrors('examContent')}" th:errors="*{examContent}" class="help-block">error!</span>
+        				</div>
+                         <div class="form-group">
+            				<label class="control-label"><h5>面接内容</h5></label>
+            					<div class="custom-control custom-checkbox" th:each="item : ${interviewContents}">
+              					
+                					<input type="checkbox" class="custom-control-input" name="interviewContent" th:value="${item.value}" th:field="*{interviewContent}"></input>
+	              						<label class="custom-control-label" th:for="${#ids.prev('interviewContent')}"　th:text="${item.key}"></label>
+              						
+            					</div>
+            				<span th:if="${#fields.hasErrors('interviewContent')}" th:errors="*{interviewContent}" class="help-block">error!</span>
+        				</div>
+        				<div class="form-group">
+                                <label><h5>メモ</h5></label>
+                                <textarea rows="3" cols="80" class="form-control" id="memo" name="memo" th:field="*{memo}" placeholder="その他の内容、作文のテーマ、面接官の人数、集団面接の人数、グループ作業のテーマ、面接内容な"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">メモ</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="その他の内容、作文のテーマ、面接官の人数、集団面接の人数、グループ作業のテーマ、面接内容など"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleSelect1exampleFormControlSelect1">承認先(担任)</label>
-
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>佐藤 隆</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
+        					<label class="control-label" for="teacherName">承認先</label>
+        					<select class="custom-select d-block w-100" th:field="*{teacherName}">
+            					<option value="">---</option>
+            					<option th:each="item : ${teacherNames}" th:value="${item.value}" th:text="${item.key}">pulldown</option>
+        					</select>
+        					<div th:if="${#fields.hasErrors('teacherName')}" th:errors="*{teacherName}" class="help-block">error</div>
+    					</div>
                         
                         <div class="form-group row">
                             <button type="submit" class="btn btn-primary offset-10">送信する</button>

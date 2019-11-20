@@ -9,7 +9,7 @@ import com.example.demo.model.User;
 
 @Service
 @Transactional
-public class RequestService {
+public class RequestDocService {
 	@Autowired
 	UserRepository userRepo;
 	
