@@ -82,7 +82,7 @@ public class StudentRequestController {
 	public String post(Model model,Principal principal, @ModelAttribute("requestDocForm")RequestDocForm form,SessionStatus status) {
 		reqDocService.request(form,0,principal.getName());
 		status.setComplete();
-		return "student/home";
+		return "student/home2";
 	}
 	@ModelAttribute("requestDocForm")
     public RequestDocForm setRequestForm(RequestDocForm requestDocForm){

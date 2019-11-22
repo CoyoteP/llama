@@ -20,7 +20,7 @@ public interface ReportDocRepository extends JpaRepository<ReportDoc, String> {
 	@Query(value = "select * from report_doc where report_doc_id = IN(SELECT doc_id from request where doc_type = '6') ", nativeQuery = true)
 	List<ReportDoc> getLogReports();
 
-	ReportDoc findByReportDocId(@Param("reportDocId") String reportDocId);	
+	ReportDoc findByReportDocId(@Param("reportDocId") Integer reportDocId);	
 
 
 }

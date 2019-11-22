@@ -67,7 +67,7 @@
 
 						<div class="float-left">
 							<button type="button" class="btn btn-light">
-								承認待ち <span class="badge badge-light">1</span>
+								承認待ち <span class="badge badge-light">2</span>
 							</button>
 							<button type="button" class="btn btn-primary">
 								承認 <span class="badge badge-light">1</span>
@@ -105,9 +105,19 @@
 							<tr class="table-info" th:each="requestList:${list}">
 								<td th:text="${requestList.requestId}">ID</td>
 								<td th:text="${requestList.consent}">クラス</td>
-								<td th:text="${requestList.eventDate}">出席番号</td>
-								<td th:text="${requestList.corporateName}">名前</td>
+								<td th:text="${requestLis.eventDate}">出席番号</td>
+								<td th:text="${requestLis.corporateName}">名前</td>
+								<td th:text="${user.watchWord}">あいことば</td>
 								<td>拒否</td>
+								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">1</th>
+								<td>申請</td>
+								<td>2019/11/21</td>
+								<td>HCS</td>
+								<td>承認待ち</td>
 								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
 								</td>
 							</tr>
@@ -136,7 +146,7 @@
 								<td>2019/11/11</td>
 								<td>株式会社Llama</td>
 								<td>承認</td>
-								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
+								<td>
 								</td>
 							</tr>
 							

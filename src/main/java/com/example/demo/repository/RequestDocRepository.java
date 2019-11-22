@@ -14,4 +14,6 @@ import com.example.demo.model.User;
 @Repository
 public interface RequestDocRepository extends JpaRepository<RequestDoc, String> {
 
+	RequestDoc findByRequestDocId(@Param("requestDocId") Integer requestDocId);
+
 }

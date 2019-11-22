@@ -48,7 +48,7 @@ public class RequestService {
 			userRepo.findByUserId(studentId);
 			RequestList req = new RequestList();
 			if(Integer.parseInt(request.getDocType()) == 0) {
-				RequestDoc reqDoc = reqDocRepo.getOne(request.getRequestDocId().toString());
+				RequestDoc reqDoc = reqDocRepo.findByRequestDocId(request.getRequestDocId());
 				req.setRequestId(request.getRequestId() * 10);
 				req.setConsent(request.getConsent());
 				req.setDocId(reqDoc.getRequestDocId());
@@ -57,7 +57,7 @@ public class RequestService {
 				req.setEventDate(reqDoc.getEventStartDate());
 			}else	{
 				System.out.println(request.getReportDocId().toString());
-				ReportDoc repoDoc = repoDocRepo.findByReportDocId(request.getReportDocId().toString());
+				ReportDoc repoDoc = repoDocRepo.findByReportDocId(request.getReportDocId());
 				req.setRequestId(request.getRequestId());
 				req.setDocType(request.getDocType());
 				req.setConsent(request.getConsent());

@@ -14,7 +14,7 @@
 <body>
     <div id="header">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img alt="ブランド" src="../img/bootstrap-solid.svg" width="45" height="30" />
+            <img alt="ブランド" src="../img/bootstrap-solid.svg" th:href="@{/img/bootstrap-solid.svg}" width="45" height="30" />
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,18 +58,19 @@
             <div class="col-md-12 clearfix">
 
                         <div class="float-left"> <button type="button" class="btn btn-light">
-                                承認待ち <span class="badge badge-light">4</span>
+                                承認待ち <span class="badge badge-light">2</span>
                             </button>
                             <button type="button" class="btn btn-primary">
-                                承認 <span class="badge badge-light">4</span>
+                                承認 <span class="badge badge-light">1</span>
                             </button>
                             <button type="button" class="btn btn-danger">
-                                拒否 <span class="badge badge-light">4</span>
+                                拒否 <span class="badge badge-light">1</span>
                             </button>
                             <button type="button" class="btn btn-secondary">
-                                完了 <span class="badge badge-light">4</span>
+                                完了 <span class="badge badge-light">0</span>
                             </button>
                         </div>
+                        
                         <div class="float-right">
                             <form class="form-inline my-2 my-lg-0 ">
                                 <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
@@ -91,62 +92,40 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-info">
-                                <th scope="row">1</th>
-                                <td>申請</td>
-                                <td>高橋太郎</td>
-                                <td>2019/11/11</td>
+                            <tr class="table-danger">
+                            <tr>
+                                <th scope="row">12</th>
+                                <td>申請書</td>
+                                <td>斎藤健司</td>
+                                <td>2019/11/21</td>
                                 <td>株式会社Llama</td>
-                                <td>承認</td>
+                                <td><a class="btn-sm btn-primary" href="#" role="button">承認</a></td>
+                            </tr>
+                                <th scope="row">11</th>
+                                <td>申請書</td>
+                                <td>高橋太郎</td>
+                                <td>2019/11/18</td>
+                                <td>株式会社Llama</td>
+                                <td><a class="btn-sm btn-primary" href="#" role="button">承認</a></td>
                             </tr>
                             <tr class="table-danger">
-                                <th scope="row">1</th>
-                                <td>申請</td>
+                                <th scope="row">8</th>
+                                <td>申請書</td>
                                 <td>高橋太郎</td>
-                                <td>2019/11/11</td>
+                                <td>2019/11/14</td>
                                 <td>株式会社Llama</td>
-                                <td>承認</td>
+                                <td>拒否</td>
                             </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>申請</td>
-                                <td>高橋太郎</td>
-                                <td>2019/11/11</td>
+                            <tr class="table-info">
+                                <th scope="row">6</th>
+                                <td>申請書</td>
+                                <td>向井幸助</td>
+                                <td>2019/11/14</td>
                                 <td>株式会社Llama</td>
-                                <td>承認</td>
+                                <td>承認済み</td>
                             </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>申請</td>
-                                <td>高橋太郎</td>
-                                <td>2019/11/11</td>
-                                <td>株式会社Llama</td>
-                                <td>承認</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>申請</td>
-                                <td>高橋太郎</td>
-                                <td>2019/11/11</td>
-                                <td>株式会社Llama</td>
-                                <td>承認</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>申請</td>
-                                <td>高橋太郎</td>
-                                <td>2019/11/11</td>
-                                <td>株式会社Llama</td>
-                                <td>承認</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>申請</td>
-                                <td>高橋太郎</td>
-                                <td>2019/11/11</td>
-                                <td>株式会社Llama</td>
-                                <td>承認</td>
-                            </tr>
+                            
+                           
                         </tbody>
                     </table>
                 </div>
