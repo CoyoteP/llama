@@ -40,24 +40,23 @@ public class RequestService {
 			return false;
 		}
 	}
-	public List<RequestList> gerListOfStudent(String studentId) {
-		List<Request> list = reqRepo.findByStudentId(studentId);
+	public List<Request> getListOfStudent(String studentId) {
+		List<Request> list = reqRepo.findByStudentUserId(studentId);
 		System.out.println(list.size());
-		List<RequestList> reqList = new ArrayList<RequestList>();
+		//List<RequestList> reqList = new ArrayList<RequestList>();
 		for(Request request:list) {
 			userRepo.findByUserId(studentId);
 			RequestList req = new RequestList();
 			if(Integer.parseInt(request.getDocType()) == 0) {
-				RequestDoc reqDoc = reqDocRepo.findByRequestDocId(request.getRequestDocId());
+				RequestDoc reqDoc = reqDocRepo.findByRequestDocId(request.getRequestDoc().getRequestDocId());
 				req.setRequestId(request.getRequestId() * 10);
 				req.setConsent(request.getConsent());
 				req.setDocId(reqDoc.getRequestDocId());
 				req.setCorporateName(reqDoc.getCorporateOneName());
 				req.setDocType(request.getDocType());
 				req.setEventDate(reqDoc.getEventStartDate());
-			}else	{
-				System.out.println(request.getReportDocId().toString());
-				ReportDoc repoDoc = repoDocRepo.findByReportDocId(request.getReportDocId());
+			}else{
+				ReportDoc repoDoc = repoDocRepo.findByReportDocId(request.getReportDoc().getReportDocId());
 				req.setRequestId(request.getRequestId());
 				req.setDocType(request.getDocType());
 				req.setConsent(request.getConsent());
@@ -65,13 +64,13 @@ public class RequestService {
 				req.setCorporateName(repoDoc.getCorporateName());
 				req.setEventDate(repoDoc.getEventDate());
 			}
-			reqList.add(req);
+			//reqList.add(req);
 		}
-		System.out.println(reqList.size());
-		return reqList;
+		//System.out.println(reqList.size());
+		return list;
 	}
 	public List<RequestList> gerListOfTeacher(String studentId) {
-		List<Request> list = reqRepo.findByTeacherId(studentId);
+		List<Request> list = reqRepo.findByTeacherUserId(studentId);
 		return null;
 	}
 }

@@ -3,11 +3,15 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -30,19 +34,26 @@ public class Request implements Serializable {
 	
 	private Date submitDate;
 	
-	private String studentId;
+	@OneToOne()
+    @JoinColumn(name="studentId",nullable = true)
+    private User student;
 	
-	private String teacherId;
+	@OneToOne()
+    @JoinColumn(name="teacherId",nullable = true)
+    private User teacher;
+		
+	@OneToOne()
+    @JoinColumn(name="requestDocId",nullable = true)
+    private RequestDoc requestDoc;
 	
-	private Integer requestDocId;
-
-	private Integer reportDocId;
+	@OneToOne()
+    @JoinColumn(name="reportDocId",nullable = true)
+    private ReportDoc reportDoc;
 	
 	private String docType;
 	
 	private String consent;
+
 	
-
-
 
 }

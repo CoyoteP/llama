@@ -17,9 +17,9 @@ import com.example.demo.model.User;
 @Repository
 public interface RequestRepository extends JpaRepository<Request, String> {
 	
-	List<Request> findByStudentId(@Param("studentId") String studentId);
+	List<Request> findByStudentUserId(@Param("userId") String studentId);
 	
-	List<Request> findByTeacherId(@Param("teacherId") String teacherId);
+	List<Request> findByTeacherUserId(@Param("userId") String teacherId);
 
 
 }

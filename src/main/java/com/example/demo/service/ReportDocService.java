@@ -72,9 +72,9 @@ public class ReportDocService {
 		Request req = new Request();
 		User teacher = userRepo.findByUserNameAndRoleAndEnable(form.getTeacherName(),"TEACHER","1");
 		req.setRequestDate(new Date());
-		req.setStudentId(userId);
-		req.setTeacherId(teacher.getUserId());
-		req.setReportDocId(result.getReportDocId());
+		//req.setStudentId(userId);
+		req.setTeacher(teacher);
+		req.setReportDoc(result);
 		req.setDocType("1");
 		if(submitType == 0) {
 			req.setConsent("0");

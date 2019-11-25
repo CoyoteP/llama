@@ -3,7 +3,8 @@
 
 <head>
 <meta charset="UTF-8">
-<link href="../css/open-iconic-bootstrap.css" th:href="@{/css/open-iconic-bootstrap.css}" rel="stylesheet">
+<link href="../css/open-iconic-bootstrap.css"
+	th:href="@{/css/open-iconic-bootstrap.css}" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -48,9 +49,9 @@
 				</ul>
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="#">つじひろや</a></li>
-					<li class="nav-item"><a class="nav-link" href="/signout" th:hred="@{/signout}"> <span
-							class="oi oi-account-logout"></span> <i class="fa fa-sign-out"></i>
-							ログアウト
+					<li class="nav-item"><a class="nav-link" href="/signout"
+						th:hred="@{/signout}"> <span class="oi oi-account-logout"></span>
+							<i class="fa fa-sign-out"></i> ログアウト
 					</a></li>
 				</ul>
 			</div>
@@ -103,11 +104,26 @@
 						</thead>
 						<tbody>
 							<tr class="table-info" th:each="requestList:${list}">
-								<td th:text="${requestList.requestId}">ID</td>
+								<p th:if="${requestList.docType[0] == '0'}">
+									<td th:text="${requestList.requestDoc.requestDocId}">クラス</td>
+								</p>
+								<p th:if="${requestList.docType[0] == '1'}">
+									<td th:text="${requestList.reportDoc.reportDocId}">クラス</td>
+								</p>
 								<td th:text="${requestList.consent}">クラス</td>
-								<td th:text="${requestList.eventDate}">出席番号</td>
-								<td th:text="${requestList.corporateName}">名前</td>
-								<td>拒否</td>
+								<p th:if="${requestList.docType[0] == '0'}">
+								<td th:text="${requestList.requestDoc.corporateOneName}">クラス</td>
+								<td
+									th:text="*{#temporals.format(requestList.requestDoc.eventStartDate, 'yyyy年MM月dd日')}">出席番号</td>
+
+								</p>
+								<p th:if="${requestList.docType[0] == '1'}">
+								<td th:text="${requestList.reportDoc.corporateName}">クラス</td>
+								<td
+									th:text="*{#temporals.format(requestList.reportDoc.eventDate, 'yyyy年MM月dd日')}">出席番号</td>
+								</p>
+								<td th:text="${requestList.teacher.userName}">クラス</td>
+
 								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
 								</td>
 							</tr>
@@ -120,7 +136,7 @@
 								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
 								</td>
 							</tr>
-							
+
 							<tr class="table-danger">
 								<th scope="row">1</th>
 								<td>申請</td>
@@ -139,7 +155,7 @@
 								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
 								</td>
 							</tr>
-							
+
 						</tbody>
 					</table>
 				</div>

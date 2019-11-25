@@ -69,9 +69,9 @@ public class RequestDocService {
 		Request req = new Request();
 		User teacher = userRepo.findByUserNameAndRoleAndEnable(form.getClassTeacherName(),"TEACHER","1");
 		req.setRequestDate(new Date());
-		req.setStudentId(userId);
-		req.setTeacherId(teacher.getUserId());
-		req.setRequestDocId(result.getRequestDocId());
+		//req.setStudentId(userId);
+		req.setTeacher(teacher);
+		req.setRequestDoc(result);
 		req.setDocType("0");
 		req.setConsent("0");
 		if(submitType == 0) {

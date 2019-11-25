@@ -38,10 +38,4 @@ public class RequestList implements Serializable {
 
 	private Integer reportDocId;
 
-
-	
-	
-
-
-
 }
