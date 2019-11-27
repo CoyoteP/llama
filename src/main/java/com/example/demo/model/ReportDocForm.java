@@ -61,5 +61,8 @@ public class ReportDocForm implements Serializable {
 	private String teacherName;
 
 	private String[] teacherNames;
+	
+	private String consent;
+
 
 }

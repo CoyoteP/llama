@@ -72,9 +72,12 @@ public class RequestDocForm implements Serializable {
 
 	private String[] classTeacherNames;
 	
-	private String subjectTeacherName;
+	private String subjectTeacherName1;
 
 	private String[] subjectTeacherNames;
 	
+	private String subjectTeacherName2;
+
+	private String consent;
 	
 }

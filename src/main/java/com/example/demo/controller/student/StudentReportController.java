@@ -131,7 +131,7 @@ public class StudentReportController {
 	public String post(Model model,Principal principal, @ModelAttribute("reportDocForm")ReportDocForm form,SessionStatus status) {
 		repoDocService.request(form,0,principal.getName());
 		status.setComplete();
-		return "student/home3";
+		return "student/home";
 	}
 	@ModelAttribute("reportDocForm")
     public ReportDocForm setRequestForm(ReportDocForm reportDocForm){

@@ -25,17 +25,7 @@ public class StudentHomeController {
 	
 	@GetMapping("student/home")
     public String get(Model model,Principal principal) {
-		System.out.println(principal.getName());
 		List<Request> list = reqService.getListOfStudent(principal.getName());
-		System.out.println("size:" + list.size());
-		for(Request request:list) {
-			System.out.println("DocType:" + request.getDocType());
-			if(request.getDocType().equals("0")) {
-				System.out.println(request.getRequestDoc().getCorporateOneName());
-			}else if(request.getDocType().equals("1")) {
-				System.out.println(request.getReportDoc().getCorporateName());
-			}
-		}
 		model.addAttribute("list",list);
 		return "student/home";
 	}

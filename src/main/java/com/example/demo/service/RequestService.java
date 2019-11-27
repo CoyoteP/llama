@@ -42,35 +42,37 @@ public class RequestService {
 	}
 	public List<Request> getListOfStudent(String studentId) {
 		List<Request> list = reqRepo.findByStudentUserId(studentId);
-		System.out.println(list.size());
-		//List<RequestList> reqList = new ArrayList<RequestList>();
-		for(Request request:list) {
-			userRepo.findByUserId(studentId);
-			RequestList req = new RequestList();
-			if(Integer.parseInt(request.getDocType()) == 0) {
-				RequestDoc reqDoc = reqDocRepo.findByRequestDocId(request.getRequestDoc().getRequestDocId());
-				req.setRequestId(request.getRequestId() * 10);
-				req.setConsent(request.getConsent());
-				req.setDocId(reqDoc.getRequestDocId());
-				req.setCorporateName(reqDoc.getCorporateOneName());
-				req.setDocType(request.getDocType());
-				req.setEventDate(reqDoc.getEventStartDate());
-			}else{
-				ReportDoc repoDoc = repoDocRepo.findByReportDocId(request.getReportDoc().getReportDocId());
-				req.setRequestId(request.getRequestId());
-				req.setDocType(request.getDocType());
-				req.setConsent(request.getConsent());
-				req.setDocId(repoDoc.getReportDocId());
-				req.setCorporateName(repoDoc.getCorporateName());
-				req.setEventDate(repoDoc.getEventDate());
-			}
-			//reqList.add(req);
-		}
-		//System.out.println(reqList.size());
 		return list;
 	}
-	public List<RequestList> gerListOfTeacher(String studentId) {
-		List<Request> list = reqRepo.findByTeacherUserId(studentId);
-		return null;
+	public List<Request> getListOfTeacher(String teacherId) {
+		List<Request> list = reqRepo.findByTeacherUserId(teacherId);
+		System.out.println(list.size());
+		return list;
+	}
+	public String cancel(Integer requestId, String consent) {
+		if(consent.equals("0")) {
+			consent = "1";
+		}else if(consent.equals("3")) {
+			consent = "4";
+		}else {return "miss";}
+		int status = reqRepo.updateConsent(requestId, consent);
+		if(status == 1) {
+			return "完了";
+		}else {
+			return "miss:sql";
+		}		
+	}
+	public String submit(Integer requestId, String consent) {
+		if(consent.equals("0")) {
+			consent = "2";
+		}else if(consent.equals("3")) {
+			consent = "5";
+		}else {return "miss";}
+		int status = reqRepo.updateConsent(requestId, consent);
+		if(status == 1) {
+			return "完了";
+		}else {
+			return "miss:sql";
+		}		
 	}
 }

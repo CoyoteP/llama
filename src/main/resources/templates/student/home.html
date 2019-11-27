@@ -98,69 +98,78 @@
 								<th>申請/報告</th>
 								<th>実施日</th>
 								<th>企業名</th>
-								<th>承認</th>
+								<th>状態</th>
 								<th>修正</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="table-info" th:each="requestList:${list}">
+							<tr class="" th:each="requestList:${list}">
 								<p th:if="${requestList.docType[0] == '0'}">
 									<td th:text="${requestList.requestDoc.requestDocId}">クラス</td>
+									<td>申請書</td>
+									<td th:text="*{#temporals.format(requestList.requestDoc.eventStartDate, 'yyyy年MM月dd日')}">出席番号</td>
+									<td th:text="${requestList.requestDoc.corporateOneName}" >クラス
+										<p th:if="${requestList.requestDoc != null && requestList.requestDoc.corporateTwoName != null}"  style="display:inline;"	>
+											...
+										</p>
+									</td>
 								</p>
 								<p th:if="${requestList.docType[0] == '1'}">
 									<td th:text="${requestList.reportDoc.reportDocId}">クラス</td>
+									<td>報告書</td>
+									<td th:text="*{#temporals.format(requestList.reportDoc.eventDate, 'yyyy年MM月dd日')}">出席番号</td>
+									<td th:text="${requestList.reportDoc.corporateName}">クラス</td>
 								</p>
-								<td th:text="${requestList.consent}">クラス</td>
-								<p th:if="${requestList.docType[0] == '0'}">
-								<td th:text="${requestList.requestDoc.corporateOneName}">クラス</td>
-								<td
-									th:text="*{#temporals.format(requestList.requestDoc.eventStartDate, 'yyyy年MM月dd日')}">出席番号</td>
-
+								<p th:switch="${requestList.consent}">
+									<td th:case="0" th:text="承認待ち"></td>
+									<td th:case="1" th:text="拒否" class="cancel"></td>
+   									<td th:case="2" th:text="承認" class="submit"></td>
+   									<td th:case="3" th:text="承認待ち"></td>
+   									<td th:case="4" th:text="拒否" class="cancel"></td>
+   									<td th:case="5" th:text="完了" class="end"></td>
+								    <td th:case="*">対象なし</td>
 								</p>
-								<p th:if="${requestList.docType[0] == '1'}">
-								<td th:text="${requestList.reportDoc.corporateName}">クラス</td>
-								<td
-									th:text="*{#temporals.format(requestList.reportDoc.eventDate, 'yyyy年MM月dd日')}">出席番号</td>
-								</p>
-								<td th:text="${requestList.teacher.userName}">クラス</td>
-
-								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
+								<div th:if="${requestList.docType[0] == '0'}">
+									<p th:switch="${requestList.consent}">
+										<td th:case="0"></td>
+										<td th:case="1"><button class="btn-sm btn-primary" type="submit">修正</button></td>									
+										<td th:case="2"><button class="btn-sm btn-primary" type="submit">報告</button></td>								
+										<td th:case="3"></td>
+										<td th:case="4"><button class="btn-sm btn-primary" type="submit">修正</button></td>
+										<td th:case="5"></td>
+									</p>
+								</div>
+								<div th:if="${requestList.docType[0] == '1'}">
+									<form th:action="@{/teacher/report}" method="post">
+										<input type="hidden" name="reportId"
+											th:value="${requestList.reportDoc.reportDocId}" />
+										<input type="hidden" name="consent"
+											th:value="${requestList.consent}" />
+										<p th:switch="${requestList.consent}">
+											<td th:case="0"></td>
+											<td th:case="1"><button class="btn-sm btn-primary" type="submit">修正</button></td>									
+											<td th:case="2"><button class="btn-sm btn-primary" type="submit">報告</button></td>								
+											<td th:case="3"></td>
+											<td th:case="4"><button class="btn-sm btn-primary" type="submit">修正</button></td>
+											<td th:case="5"></td>
+										</p>
+									</form>
+								</div>
 								</td>
+								
 							</tr>
-							<tr>
-								<th scope="row">1</th>
-								<td>申請</td>
-								<td>2019/11/15</td>
-								<td>株式会社Llama</td>
-								<td>承認待ち</td>
-								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-								</td>
-							</tr>
-
-							<tr class="table-danger">
-								<th scope="row">1</th>
-								<td>申請</td>
-								<td>2019/11/12</td>
-								<td>株式会社Llama</td>
-								<td>拒否</td>
-								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-								</td>
-							</tr>
-							<tr class="table-primary">
-								<th scope="row">1</th>
-								<td>申請</td>
-								<td>2019/11/11</td>
-								<td>株式会社Llama</td>
-								<td>承認</td>
-								<td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-								</td>
-							</tr>
-
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+	$(function(){
+		$("tr:has(td.submit)").addClass("table-info");
+		$("tr:has(td.cancel)").addClass("table-danger");
+		$("tr:has(td.end)").addClass("table-active");
+	});
+	</script>
 </body>
 </html>

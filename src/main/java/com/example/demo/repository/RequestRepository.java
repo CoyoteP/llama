@@ -21,5 +21,8 @@ public interface RequestRepository extends JpaRepository<Request, String> {
 	
 	List<Request> findByTeacherUserId(@Param("userId") String teacherId);
 
+    @Modifying
+	@Query("update Request v set v.consent = :consent where v.requestId = :requestId")
+	int updateConsent(@Param("requestId") Integer requestId, @Param("consent") String consent);
 
 }

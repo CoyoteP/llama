@@ -85,12 +85,48 @@
                                 <td th:text="${user.className}">クラス</td>
                                 <td th:text="${user.classNumber}">番号</td>
                                 <td th:text="${user.userName}">名前</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">確認</a>
+                                <td><a class="btn-sm btn-primary" href="#"
+								data-toggle="modal" th:attr="data-target='#id' + ${user.userId}" 
+									role="button">確認</a>
                                 </td>
                             </tr>
                             	                   
                         </tbody>
                     </table>
+                    <div th:each="user:${users}">
+				<div class="modal fade" th:id="'id' + ${user.userId}" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalScrollableTitle"
+						aria-hidden="true">
+									<div class="modal-dialog modal-dialog-scrollable"
+							role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalScrollableTitle">確認</h5>
+												<button type="button" class="close" data-dismiss="modal"
+										aria-label="閉じる">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<form th:action="@{/teacher/students_manager}" method="post">
+												<div class="modal-body">
+													<div class="form-group">
+													    <label for="exampleInputEmail1">パスワード</label>
+													    <input type="password" class="form-control" id="password" placeholder="パスワード">
+													</div><div class="form-group">
+													    <label for="exampleInputEmail1">パスワード再入力</label>
+													    <input type="password" class="form-control" id="passwordRetype" placeholder="パスワード再入力">
+													</div>
+												</div>
+												<div class="modal-footer">
+													<input type="hidden" name="userId" th:value="${user.userId}" />
+													<button type="submit" class="btn btn-primary">承認</button>
+												</div>
+											</form> 
+											
+										</div>
+									</div>
+								</div>
+						</div>
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		//http.authorizeRequests().antMatchers("/teacher/**").hasRole("TEACHER").antMatchers("/student/**").hasRole("STUDENT").antMatchers("/signup").permitAll().anyRequest().authenticated();
-		http.authorizeRequests().antMatchers("/signup","/endpoint","/topic").permitAll().anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/signup","/endpoint","/topic","/login").permitAll().anyRequest().authenticated();
 
 		http.formLogin().loginProcessingUrl("/auth").loginPage("/login").failureUrl("/login?error")
 				.defaultSuccessUrl("/default", true).usernameParameter("userId").passwordParameter("password").and()

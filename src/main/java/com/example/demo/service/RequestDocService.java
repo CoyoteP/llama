@@ -84,4 +84,36 @@ public class RequestDocService {
 		return true;
 
 	}
+
+	public RequestDoc findByRequestDocId(Integer requestDocId) {
+		RequestDoc requestDoc = reqDocRepo.findByRequestDocId(requestDocId);
+		return requestDoc;
+	}
+
+	public RequestDocForm importByDoc(RequestDoc doc, String consent) {
+		RequestDocForm form = new RequestDocForm();
+		form.setEventStartDate(doc.getEventStartDate());
+		form.setEventEndDate(doc.getEventEndDate());
+		form.setEventPlace(doc.getEventPlace());
+		form.setContent(doc.getContent());
+		form.setCorporateOneName(doc.getCorporateOneName());
+		form.setCorporateOneProgression(doc.getCorporateOneProgression());
+		form.setCorporateTwoName(doc.getCorporateTwoName());
+		form.setCorporateTwoProgression(doc.getCorporateTwoProgression());
+		form.setCorporateThreeName(doc.getCorporateThreeName());
+		form.setCorporateThreeProgression(doc.getCorporateThreeProgression());
+		form.setCorporateFourName(doc.getCorporateFourName());
+		form.setCorporateFourProgression(doc.getCorporateFourProgression());
+		form.setCorporateFiveName(doc.getCorporateFiveName());
+		form.setCorporateFiveProgression(doc.getCorporateFiveProgression());
+		form.setLeaveDate(doc.getLeaveDate());
+		form.setAbsentStartDate(doc.getAbsentStartDate());
+		form.setAbsentEndDate(doc.getAbsentEndDate());
+		form.setDelayDate(doc.getDelayDate());
+		form.setMemo(doc.getMemo());
+		form.setConsent(consent);
+		
+		
+		return form;
+	}
 }

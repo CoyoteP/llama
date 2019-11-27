@@ -24,12 +24,11 @@ public class DefaultController {
 	public String get(Model model, Principal principal) {
 		String role = userService.getRole(principal.getName());
 		if (role.equals("STUDENT")) {
-			return "student/home";
+			return "redirect:/student/home";
 		} else if (role.equals("TEACHER")) {
-			System.out.println("welcome to teacher");
-			return "teacher/home";
+			return "redirect:/teacher/home";
 		} else if (role.equals("ADMIN")) {
-			return "admin/home";
+			return "redirect:/admin/home";
 		} else {
 			return "ques";
 		}
