@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,10 +38,15 @@ public class RequestDocService {
 		}
 	}
 
-	public boolean request(RequestDocForm form, int requestId, String userId) {
+	public boolean request(RequestDocForm form,  String userId) {
 		RequestDoc doc = new RequestDoc();
 		User student = userRepo.findByUserId(userId) ;
 		String department = student.getClassName().substring(0, 1);
+		//Integer id = form.getRequestDocId();
+		//if(id != 0) {
+		//	doc.setRequestDocId(id);
+		//}
+		
 		doc.setEventStartDate(form.getEventStartDate());
 		doc.setEventEndDate(form.getEventEndDate());
 		doc.setEventPlace(form.getEventPlace());
@@ -55,32 +61,50 @@ public class RequestDocService {
 		doc.setAbsentEndDate(form.getAbsentEndDate());
 		doc.setDelayDate(form.getDelayDate());
 		doc.setMemo(form.getMemo());
-		RequestDoc result = new RequestDoc();
-		int submitType = 0;
-		if (requestId == 0) {
-			result = reqDocRepo.save(doc);
-			submitType = 0;
+		if (form.getConsent() == null) {
+			reqDocRepo.save(doc);
 		} else {
-			doc.setRequestDocId(requestId);
-			result = reqDocRepo.save(doc);
-			submitType = 1;
-
+			doc.setRequestDocId(form.getRequestDocId());
+			reqDocRepo.save(doc);
 		}
 		Request req = new Request();
 		User teacher = userRepo.findByUserNameAndRoleAndEnable(form.getClassTeacherName(),"TEACHER","1");
-		req.setRequestDate(new Date());
-		//req.setStudentId(userId);
-		req.setTeacher(teacher);
-		req.setRequestDoc(result);
-		req.setDocType("0");
-		req.setConsent("0");
-		if(submitType == 0) {
-			req.setConsent("0");
-		}else{
-			req.setConsent("2");
+		User subTeacher1 = new User();
+		User subTeacher2 = new User();
+		if(!(form.getSubjectTeacherName1() == null)) {
+			subTeacher1 = userRepo.findByUserNameAndRoleAndEnable(form.getSubjectTeacherName1(),"TEACHER","1");
+		}
+		if(!(form.getSubjectTeacherName2() == null)) {
+			subTeacher2 = userRepo.findByUserNameAndRoleAndEnable(form.getSubjectTeacherName2(),"TEACHER","1");
 		}
 		
-		reqRepo.save(req);
+		req.setRequestDate(new Date());
+		req.setStudent(student);
+		req.setTeacher(teacher);
+		req.setRequestDoc(doc);
+		req.setDocType("0");
+		req.setConsent("0");
+		if(form.getConsent() == null) {
+			System.out.println("request:0");
+			req.setConsent("0");
+			reqRepo.save(req);
+		}else if(form.getConsent().equals("1")){
+			System.out.println("request:1");
+			reqRepo.editRequest(req.getRequestDoc().getRequestDocId(),teacher.getUserId(),"0");
+			if(subTeacher1.getUserId() != null) {
+				reqRepo.editRequest(req.getRequestDoc().getRequestDocId(),subTeacher1.getUserId(),"0");
+			}
+			if(subTeacher2.getUserId() != null) {
+				reqRepo.editRequest(req.getRequestDoc().getRequestDocId(),subTeacher2.getUserId(),"0");
+			}
+		}else if(form.getConsent().equals("2") || form.getConsent().equals("4")) {
+			System.out.println("request:2or4 ->" + req.getRequestDoc().getRequestDocId() + ":" + teacher.getUserId());
+			reqRepo.editRequest(req.getRequestDoc().getRequestDocId(),teacher.getUserId(),"3");
+		}else {
+			System.out.println("request:other");
+
+		}
+		
 		return true;
 
 	}
@@ -92,6 +116,7 @@ public class RequestDocService {
 
 	public RequestDocForm importByDoc(RequestDoc doc, String consent) {
 		RequestDocForm form = new RequestDocForm();
+		form.setRequestDocId(doc.getRequestDocId());
 		form.setEventStartDate(doc.getEventStartDate());
 		form.setEventEndDate(doc.getEventEndDate());
 		form.setEventPlace(doc.getEventPlace());
@@ -112,8 +137,15 @@ public class RequestDocService {
 		form.setDelayDate(doc.getDelayDate());
 		form.setMemo(doc.getMemo());
 		form.setConsent(consent);
+		List<String> teachers = reqRepo.getTeacherNamesOfRequestDocId(doc.getRequestDocId());
 		
-		
+		form.setClassTeacherName(teachers.get(0));
+		if(teachers.size() >= 2) {
+			form.setSubjectTeacherName1(teachers.get(1));
+		}
+		if(teachers.size() >= 3) {
+			form.setSubjectTeacherName2(teachers.get(2));
+		}
 		return form;
 	}
 }

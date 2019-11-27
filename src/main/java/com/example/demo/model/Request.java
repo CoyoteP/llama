@@ -34,19 +34,19 @@ public class Request implements Serializable {
 	
 	private Date submitDate;
 	
-	@OneToOne()
+	@ManyToOne()
     @JoinColumn(name="studentId",nullable = true)
     private User student;
 	
-	@OneToOne()
+	@ManyToOne()
     @JoinColumn(name="teacherId",nullable = true)
     private User teacher;
 		
-	@OneToOne()
+	@ManyToOne()
     @JoinColumn(name="requestDocId",nullable = true)
     private RequestDoc requestDoc;
 	
-	@OneToOne()
+	@ManyToOne()
     @JoinColumn(name="reportDocId",nullable = true)
     private ReportDoc reportDoc;
 	

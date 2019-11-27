@@ -126,13 +126,13 @@
 							<td th:text="${requestList.reportDoc.corporateName}">クラス</td>
 							</p>
 							<p th:switch="${requestList.consent}">
-							<td th:case="0" th:text="承認待ち"></td>
-							<td th:case="1" th:text="拒否" class="cancel"></td>
-							<td th:case="2" th:text="承認" class="submit"></td>
-							<td th:case="3" th:text="承認待ち"></td>
-							<td th:case="4" th:text="拒否" class="cancel"></td>
-							<td th:case="5" th:text="完了" class="end"></td>
-							<td th:case="*">対象なし</td>
+								<td th:case="0" th:text="承認待ち"></td>
+								<td th:case="1" th:text="拒否" class="cancel"></td>
+								<td th:case="2" th:text="承認" class="submit"></td>
+								<td th:case="3" th:text="承認待ち"></td>
+								<td th:case="4" th:text="拒否" class="cancel"></td>
+								<td th:case="5" th:text="完了" class="end"></td>
+								<td th:case="*">対象なし</td>
 							</p>
 							<p th:switch="${requestList.consent}">
 								<td th:case="0"><a class="btn-sm btn-primary" href="#"

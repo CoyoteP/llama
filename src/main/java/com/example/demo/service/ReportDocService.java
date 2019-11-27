@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class ReportDocService {
 		return false;
 	}
 
-	public boolean request(ReportDocForm form, int reportId, String userId) {
+	public boolean request(ReportDocForm form, String userId) {
 		ReportDoc doc = new ReportDoc();
 		User student = userRepo.findByUserId(userId) ;
 		String department = student.getClassName().substring(0, 1);
@@ -60,30 +61,66 @@ public class ReportDocService {
 		
 		ReportDoc result = new ReportDoc();
 		int submitType = 0;
-		if (reportId == 0) {
-			result = repoDocRepo.save(doc);
-			submitType = 0;
+		if (form.getConsent() == null) {
+			repoDocRepo.save(doc);
 		} else {
-			doc.setReportDocId(reportId);
-			result = repoDocRepo.save(doc);
-			submitType = 1;
-
+			doc.setReportDocId(form.getReportDocID());
+			repoDocRepo.save(doc);
 		}
 		Request req = new Request();
 		User teacher = userRepo.findByUserNameAndRoleAndEnable(form.getTeacherName(),"TEACHER","1");
 		req.setRequestDate(new Date());
-		//req.setStudentId(userId);
+		req.setStudent(student);
 		req.setTeacher(teacher);
-		req.setReportDoc(result);
+		req.setReportDoc(doc);
 		req.setDocType("1");
-		if(submitType == 0) {
+		if(form.getConsent() == null) {
 			req.setConsent("0");
-		}else{
-			req.setConsent("2");
+			reqRepo.save(req);
+		}else if(form.getConsent().equals("1")){
+			System.out.println("request:1");
+			reqRepo.editReport(req.getReportDoc().getReportDocId(),teacher.getUserId(),"0");
+		}else if(form.getConsent().equals("2") || form.getConsent().equals("4")) {
+			System.out.println("request:2or4");
+			reqRepo.editReport(req.getReportDoc().getReportDocId(),teacher.getUserId(),"3");
+		}else {
+			System.out.println("request:other");
 		}
-		
-		reqRepo.save(req);
 		return true;
 
 	}
+
+	public ReportDoc findByReporttDocId(Integer reportDocId) {
+		ReportDoc reportDoc = repoDocRepo.findByReportDocId(reportDocId);
+		return reportDoc;
+	}
+
+	public ReportDocForm importByDoc(ReportDoc doc, String consent) {
+		ReportDocForm form = new ReportDocForm();
+		form.setReportDocID(doc.getReportDocId());
+		form.setCorporateName(doc.getCorporateName());
+		form.setKnownMethod(doc.getKnownMethod());
+		form.setEventDate(doc.getEventDate());
+		form.setEventPlace(doc.getEventPlace());
+		form.setNoticeDays(Integer.parseInt(doc.getNoticeDays()));
+		form.setNoticeTarget(doc.getNoticeTarget());
+		form.setNoticeMethod(doc.getNoticeTarget());
+		form.setExamTimes(Integer.parseInt(doc.getExamTimes()));
+		form.setExamContent(doc.getExamContent());
+		form.setInterviewContent(doc.getInterviewContent());
+		form.setMemo(doc.getMemo());
+		List<String> teachers = reqRepo.getTeacherNamesOfReportDocId(doc.getReportDocId());
+		form.setTeacherName(teachers.get(0));
+		form.setConsent(consent);
+
+		return form;
+	}
+
+	public List<ReportDoc> getLogs() {
+		List<Integer> requests = reqRepo.getLogReportDocIds();
+		System.out.println("ookisa:" + requests);
+		List<ReportDoc> list = repoDocRepo.getLogReports(requests);
+		return list;
+	}
+
 }

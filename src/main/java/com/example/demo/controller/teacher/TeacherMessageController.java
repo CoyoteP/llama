@@ -11,6 +11,5 @@ public class TeacherMessageController {
 	@GetMapping("teacher/message")
     public String get(Model model,Principal principal) {
 		return "teacher/message";
-
 	}
 }

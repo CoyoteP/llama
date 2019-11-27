@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.ReportDoc;
 import com.example.demo.model.ReportDocForm;
+import com.example.demo.model.RequestDoc;
+import com.example.demo.model.RequestDocForm;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ReportDocService;
@@ -90,7 +94,7 @@ public class StudentReportController {
 			});
 
 	@GetMapping("student/report")
-	public String get(Model model, ReportDocForm reportDocForm, Principal principal) {
+	public String get(Model model, ReportDocForm reportDocForm, Principal principal, @ModelAttribute("model")ModelMap modelMap) {
 		Map<String, String> TEACHER_NAMES_ITEMS = Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
 			{
 				List<String> teacherNames = userService.getAllTeacherName();
@@ -99,13 +103,18 @@ public class StudentReportController {
 				}
 			}
 		});
+		reportDocForm = (ReportDocForm) modelMap.get("reportDocForm");
+		if(reportDocForm == null) {
+			reportDocForm = new ReportDocForm();
+			reportDocForm.setTeacherName(userService.getClassTeacher(principal.getName()));
+		}
+		model.addAttribute("reportDocForm",reportDocForm);
 		model.addAttribute("knownMethods", KNWON_METHOD_ITEMS);
 		model.addAttribute("noticeTargets", NOTICE_TARGET_ITEMS);
 		model.addAttribute("noticeMethods", NOTICE_METHOD_ITEMS);
 		model.addAttribute("examContents", EXAM_CONTENT_ITEMS);
 		model.addAttribute("interviewContents", INTERVIEW_CONTENT_ITEMS);
 		model.addAttribute("teacherNames", TEACHER_NAMES_ITEMS);
-		reportDocForm.setTeacherName(userService.getClassTeacher(principal.getName()));
 
 		return "student/report";
 	}
@@ -129,9 +138,21 @@ public class StudentReportController {
 
 	@PostMapping("student/report")
 	public String post(Model model,Principal principal, @ModelAttribute("reportDocForm")ReportDocForm form,SessionStatus status) {
-		repoDocService.request(form,0,principal.getName());
+		repoDocService.request(form,principal.getName());
 		status.setComplete();
-		return "student/home";
+		return "redirect:/student/home";
+	}
+	
+	@PostMapping("student/report/edit")
+	public String edit(Model model,Principal principal, RedirectAttributes redirectAttributes,@ModelAttribute ReportDocForm reportDocForm ,@ModelAttribute("reportDocId") Integer reportDocId,@ModelAttribute("consent") String consent) {
+		ReportDoc reportDoc = repoDocService.findByReporttDocId(reportDocId);
+		reportDocForm = repoDocService.importByDoc(reportDoc,consent);
+		ModelMap modelMap = new ModelMap();
+	    modelMap.addAttribute("reportDocForm", reportDocForm);
+
+		redirectAttributes.addFlashAttribute("model", modelMap);
+		setRequestForm(reportDocForm);
+		return "redirect:/student/report";
 	}
 	@ModelAttribute("reportDocForm")
     public ReportDocForm setRequestForm(ReportDocForm reportDocForm){

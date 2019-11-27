@@ -25,6 +25,8 @@ public class ReportDocForm implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private Integer reportDocID;
+	
 	@NotNull
 	private String corporateName;
 

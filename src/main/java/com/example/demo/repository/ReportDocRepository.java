@@ -17,8 +17,8 @@ import com.example.demo.model.User;
 public interface ReportDocRepository extends JpaRepository<ReportDoc, String> {
 
 	@Modifying
-	@Query(value = "select * from report_doc where report_doc_id = IN(SELECT doc_id from request where doc_type = '6') ", nativeQuery = true)
-	List<ReportDoc> getLogReports();
+	@Query(value = "from ReportDoc where reportDocId IN :reportDocIds ")
+	List<ReportDoc> getLogReports(@Param("reportDocIds") List<Integer> reportDocIds);
 
 	ReportDoc findByReportDocId(@Param("reportDocId") Integer reportDocId);	
 

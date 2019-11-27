@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.model.ReportDoc;
 import com.example.demo.repository.ReportDocRepository;
+import com.example.demo.service.ReportDocService;
 import com.example.demo.service.UserService;
 
 @Controller
 public class TeacherReportLogController {
 	@Autowired
-	ReportDocRepository repoDocRepo;
+	ReportDocService repoDocService;
 	
 	@GetMapping("teacher/report_log")
     public String get(Model model,Principal principal) {
-		//List<ReportDoc> report = repoDocRepo.getLogReports();
-		//model.addAttribute("reports",report);
+		List<ReportDoc> report = repoDocService.getLogs();
+		model.addAttribute("reports",report);
 		return "teacher/report_log";
 	}
 }

@@ -20,7 +20,9 @@ import lombok.Data;
 @Data
 public class RequestDocForm implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	private Integer requestDocId;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime eventStartDate;
 

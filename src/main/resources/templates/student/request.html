@@ -151,12 +151,20 @@
         					<div th:if="${#fields.hasErrors('classTeacherName')}" th:errors="*{classTeacherName}" class="help-block">error</div>
     					</div>
     					<div class="form-group">
-        					<label class="control-label" for="subjectTeacherName">承認先（教科担任）</label>
-        					<select class="custom-select d-block w-100" th:field="*{subjectTeacherName}">
+        					<label class="control-label" for="subjectTeacherName1">承認先（教科担任1）</label>
+        					<select class="custom-select d-block w-100" th:field="*{subjectTeacherName1}">
             					<option value="">---</option>
             					<option th:each="item : ${subjectTeacherNames}" th:value="${item.value}" th:text="${item.key}">pulldown</option>
         					</select>
-        					<div th:if="${#fields.hasErrors('subjectTeacherName')}" th:errors="*{subjectTeacherName}" class="help-block">error</div>
+        					<div th:if="${#fields.hasErrors('subjectTeacherName1')}" th:errors="*{subjectTeacherName1}" class="help-block">error</div>
+    					</div>
+    					<div class="form-group">
+        					<label class="control-label" for="subjectTeacherName2">承認先（教科担任2）</label>
+        					<select class="custom-select d-block w-100" th:field="*{subjectTeacherName2}">
+            					<option value="">---</option>
+            					<option th:each="item : ${subjectTeacherNames}" th:value="${item.value}" th:text="${item.key}">pulldown</option>
+        					</select>
+        					<div th:if="${#fields.hasErrors('subjectTeacherName2')}" th:errors="*{subjectTeacherName2}" class="help-block">error</div>
     					</div>
                         <div class="form-group row">
                             <button type="submit" class="btn btn-primary offset-10">送信する</button>

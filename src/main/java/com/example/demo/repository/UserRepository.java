@@ -30,4 +30,5 @@ public interface UserRepository extends JpaRepository<User, String> {
 
 	User findByUserNameAndRoleAndEnable(@Param("userName") String userName,@Param("role") String role,@Param("enable") String enable);
 
+
 }

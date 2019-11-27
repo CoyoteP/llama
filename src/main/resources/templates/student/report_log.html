@@ -71,39 +71,104 @@
                 <thead class="thead-light">
                     <tr>
                         <th>No</th>
-                        <th>学科</th>
                         <th>日付</th>
                         <th>社名</th>
+                        <th>確認</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="table-info">
-                        <th scope="row">1</th>
-                        <td>R</td>
-                        <td>2019/11/11</td>
-                        <td>株式会社Llama</td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">1</th>
-                        <td>R</td>
-                        <td>2019/11/11</td>
-                        <td>株式会社Llama</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>S</td>
-                        <td>2019/11/11</td>
-                        <td>株式会社Llama</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>R</td>
-                        <td>2019/11/11</td>
-                        <td>株式会社Llama</td>
-                    </tr>
+                    <tr class="table-info" th:each="report:${reports}">
+                                <td th:text="${report.reportDocId}">ID</td>
+                                <td th:text="${report.eventDate}">クラス</td>
+                                <td th:text="${report.corporateName}">出席番号</td>
+                                <td><a class="btn-sm btn-primary" href="#"
+								data-toggle="modal" th:attr="data-target='#id' + ${report.reportDocId}" 
+								role="button">確認</a></form>	
+                                </td>
+                            </tr>
 
                 </tbody>
             </table>
-            </div></div></div>
+            <div th:each="report:${reports}">
+				<div class="modal fade" th:id="'id' + ${report.reportDocId}" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalScrollableTitle"
+						aria-hidden="true">
+									<div class="modal-dialog modal-dialog-scrollable modal-lg"
+							role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalScrollableTitle">確認</h5>
+												<button type="button" class="close" data-dismiss="modal"
+										aria-label="閉じる">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+							                    <table class="table table-borderless" th:object="${report}">
+													<tbody>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">企業名：</th>
+															<td class="col-7 text-center h5" th:text="*{corporateName}">田中システムズ</td>
+															
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">知った方式:</th>
+															<td class="col-7 text-center h5" th:text="*{knownMethod}"></td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">イベント日時:</th>
+															<td class="col-7 text-center h5"
+																th:text="*{#temporals.format(eventDate, 'yyyy/MM/dd HH:mm')}"></td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">イベント場所:</th>
+															<td class="col-7 text-center h5" th:text="*{eventPlace}">田中システムズ</td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">通知日数:</th>
+															<td class="col-7 text-center h5"
+																th:text="*{#numbers.formatInteger(noticeDays, 0, 'COMMA')}"></td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">通知先:</th>
+															<td class="col-7 text-center h5" th:text="*{noticeTarget}"></td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">通知方式:</th>
+															<td class="col-7 text-center h5" th:text="*{noticeMethod}"></td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">何次試験:</th>
+															<td class="col-7 text-center h5"
+																th:text="*{#numbers.formatInteger(examTimes, 0, 'COMMA')}"></td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">試験内容（Multi）:</th>
+															<td class="col-7 text-center h5" th:each="c : *{examContent}"
+																th:text="${c}"></td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">面接内容（Multi）:</th>
+															<td class="col-7 text-center h5"
+																th:each="c : *{interviewContent}" th:text="${c}"></td>
+														</tr>
+														<tr class="row">
+															<th class="offset-1 col-3 text-right">メモ</th>
+															<td class="col-7 text-center h5" th:utext="*{memo} ?: _">(Not
+																entered)</td>
+														</tr>
+													</tbody>
+												</table>
+												</div>
+											</div>
+											<div class="modal-footer">
+												
+											</div>
+										</div>
+									</div>
+								</div>
+						</div>
+        </div>
     </div>
 </body></html>

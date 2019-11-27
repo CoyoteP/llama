@@ -130,6 +130,11 @@
 								    <td th:case="*">対象なし</td>
 								</p>
 								<div th:if="${requestList.docType[0] == '0'}">
+								<form th:action="@{/student/request/edit}" method="post">
+										<input type="hidden" name="requestDocId"
+											th:value="${requestList.requestDoc.requestDocId}" />
+										<input type="hidden" name="consent"
+											th:value="${requestList.consent}" />
 									<p th:switch="${requestList.consent}">
 										<td th:case="0"></td>
 										<td th:case="1"><button class="btn-sm btn-primary" type="submit">修正</button></td>									
@@ -138,10 +143,11 @@
 										<td th:case="4"><button class="btn-sm btn-primary" type="submit">修正</button></td>
 										<td th:case="5"></td>
 									</p>
+									</form>
 								</div>
 								<div th:if="${requestList.docType[0] == '1'}">
-									<form th:action="@{/teacher/report}" method="post">
-										<input type="hidden" name="reportId"
+									<form th:action="@{/student/report/edit}" method="post">
+										<input type="hidden" name="reportDocId"
 											th:value="${requestList.reportDoc.reportDocId}" />
 										<input type="hidden" name="consent"
 											th:value="${requestList.consent}" />

@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.RequestDoc;
 import com.example.demo.model.RequestDocForm;
@@ -43,7 +45,7 @@ public class StudentRequestController {
 			});
 
 	@GetMapping("student/request")
-	public String get(@ModelAttribute("requestDoc") RequestDoc requestDoc,Model model, RequestDocForm requestDocForm,Principal principal) {
+	public String get(Model model, RequestDocForm requestDocForm,Principal principal,@ModelAttribute("model")ModelMap modelMap) {
 		Map<String, String> CLASS_TEACHER_NAMES_ITEMS = Collections.unmodifiableMap(new LinkedHashMap<String, String>() {
 			{
 				List<String> teacherNames = userService.getAllTeacherName();
@@ -60,10 +62,16 @@ public class StudentRequestController {
 				}
 			}
 		});
+		requestDocForm = (RequestDocForm) modelMap.get("requestDocForm");
+		if(requestDocForm == null) {
+			requestDocForm = new RequestDocForm();
+			requestDocForm.setClassTeacherName(userService.getClassTeacher(principal.getName()));
+		}
+		model.addAttribute("requestDocForm",requestDocForm);
 		model.addAttribute("contents",CONTENTS_ITEMS);
 		model.addAttribute("classTeacherNames",CLASS_TEACHER_NAMES_ITEMS);
 		model.addAttribute("subjectTeacherNames",SUBJECT_TEACHER_NAMES_ITEMS);
-		requestDocForm.setClassTeacherName(userService.getClassTeacher(principal.getName()));
+		
 		return "student/request";
 	}
 	@PostMapping("student/request_check")
@@ -78,17 +86,21 @@ public class StudentRequestController {
 
 	@PostMapping("student/request")
 	public String post(Model model,Principal principal, @ModelAttribute("requestDocForm")RequestDocForm form,SessionStatus status) {
-		reqDocService.request(form,0,principal.getName());
+		reqDocService.request(form,principal.getName());
 		status.setComplete();
-		return "student/home";
+		return "redirect:/student/home";
 	}
 	
 	@PostMapping("student/request/edit")
-	public String edit(Model model,Principal principal, @ModelAttribute("requestDocId") Integer requestDocId,@ModelAttribute("consent") String consent) {
+	public String edit(Model model,Principal principal, RedirectAttributes redirectAttributes,@ModelAttribute RequestDocForm requestDocForm ,@ModelAttribute("requestDocId") Integer requestDocId,@ModelAttribute("consent") String consent) {
 		RequestDoc requestDoc = reqDocService.findByRequestDocId(requestDocId);
-		RequestDocForm requestDocForm = reqDocService.importByDoc(requestDoc,consent);
+		requestDocForm = reqDocService.importByDoc(requestDoc,consent);
+		ModelMap modelMap = new ModelMap();
+	    modelMap.addAttribute("requestDocForm", requestDocForm);
+
+		redirectAttributes.addFlashAttribute("model", modelMap);
 		setRequestForm(requestDocForm);
-		return "redirect:student/request";
+		return "redirect:/student/request";
 	}
 	@ModelAttribute("requestDocForm")
     public RequestDocForm setRequestForm(RequestDocForm requestDocForm){

@@ -57,5 +57,8 @@ public class ReportDoc implements Serializable {
 	
 	private String memo;
 	
+	@OneToMany(mappedBy="reportDoc")
+    private List<Request> requests;
+	
 	
 }

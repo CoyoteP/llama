@@ -68,8 +68,7 @@ public class RequestDoc implements Serializable {
 
 	private String memo;
 	
-    @OneToMany(cascade=CascadeType.ALL)
-    @JoinColumn(name="requestDocId")	
+    @OneToMany(mappedBy="requestDoc")
     private List<Request> requests;
 
 

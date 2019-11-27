@@ -36,5 +36,11 @@ public class User implements Serializable {
 	
 	private String role;
 	
+	@OneToMany(mappedBy="student")
+    private List<Request> requestsOfStudent;
+	
+	@OneToMany(mappedBy="teacher")
+    private List<Request> requestsOfTeacher;
+	
 
 }
