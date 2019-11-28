@@ -80,6 +80,7 @@ public class StudentRequestController {
 		// model.addAttribute("validationError", "不正な値が入力されました");
 		// return "student/report";
 		// }	
+		System.out.println("OK:" + requestDocForm.getAbsentStartDate());
 		setRequestForm(requestDocForm);
 		return "student/request_check";
 	}

@@ -21,7 +21,8 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/open-iconic-bootstrap.css" th:href="@{/font/css/open-iconic-bootstrap.css}">
+<link rel="stylesheet" href="../css/open-iconic-bootstrap.css"
+	th:href="@{/font/css/open-iconic-bootstrap.css}">
 
 <title>ホーム</title>
 </head>
@@ -129,25 +130,27 @@
 							<td th:text="${requestList.reportDoc.corporateName}">クラス</td>
 							</p>
 							<p th:switch="${requestList.consent}">
-								<td th:case="0" th:text="承認待ち"></td>
-								<td th:case="1" th:text="拒否" class="cancel"></td>
-								<td th:case="2" th:text="承認" class="submit"></td>
-								<td th:case="3" th:text="承認待ち"></td>
-								<td th:case="4" th:text="拒否" class="cancel"></td>
-								<td th:case="5" th:text="完了" class="end"></td>
-								<td th:case="*">対象なし</td>
+							<td th:case="0" th:text="承認待ち"></td>
+							<td th:case="1" th:text="拒否" class="cancel"></td>
+							<td th:case="2" th:text="承認" class="submit"></td>
+							<td th:case="3" th:text="承認待ち"></td>
+							<td th:case="4" th:text="拒否" class="cancel"></td>
+							<td th:case="5" th:text="完了" class="end"></td>
+							<td th:case="*">対象なし</td>
 							</p>
 							<p th:switch="${requestList.consent}">
-								<td th:case="0"><a class="btn-sm btn-primary" href="#"
-								data-toggle="modal" th:attr="data-target='#id' + ${requestList.requestId}" 
-									role="button">確認</a></td>
-								<td th:case="1"></td>
-								<td th:case="2"></td>
-								<td th:case="3"><a class="btn-sm btn-primary" href="#"
-								data-toggle="modal" th:attr="data-target='#id' + ${requestList.requestId}" 
+							<td th:case="0"><a class="btn-sm btn-primary" href="#"
+								data-toggle="modal"
+								th:attr="data-target='#id' + ${requestList.requestId}"
 								role="button">確認</a></td>
-								<td th:case="4"></td>
-								<td th:case="5"></td>
+							<td th:case="1"></td>
+							<td th:case="2"></td>
+							<td th:case="3"><a class="btn-sm btn-primary" href="#"
+								data-toggle="modal"
+								th:attr="data-target='#id' + ${requestList.requestId}"
+								role="button">確認</a></td>
+							<td th:case="4"></td>
+							<td th:case="5"></td>
 							</p>
 						</tr>
 
@@ -155,199 +158,199 @@
 				</table>
 			</div>
 			<div th:each="requestList:${list}">
-				<div class="modal fade" th:id="'id' + ${requestList.requestId}" tabindex="-1"
-						role="dialog" aria-labelledby="exampleModalScrollableTitle"
-						aria-hidden="true">
-									<div class="modal-dialog modal-dialog-scrollable modal-lg"
-							role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalScrollableTitle">確認</h5>
-												<button type="button" class="close" data-dismiss="modal"
-										aria-label="閉じる">
-													<span aria-hidden="true">&times;</span>
-												</button>
-											</div>
-											<div class="modal-body">
-											<div th:if="${requestList.docType[0] == '0'}">
-											
-							                    <table class="table table-borderless"
-										th:object="${requestList.requestDoc}">
-													<tbody>
-														<tr class="row">
-							                                <th class="offset-1 col-3 text-right">イベント開始日時:</th>
-							                                <td class="col-7 text-center h5"
-																th:text="*{#temporals.format(eventStartDate, 'yyyy/MM/dd HH:mm')}"></td>
-														</tr>
-							                            <tr class="row">
-							                                <th class="offset-1 col-3 text-right">イベント終了日時:</th>
-							                                <td class="col-7 text-center h5"
-																th:text="*{#temporals.format(eventEndDate, 'yyyy/MM/dd HH:mm')}"></td>
-														</tr>
-							                            <tr class="row">
-							                                <th class="offset-1 col-3 text-right">イベント場所:</th>
-															<td class="col-7 text-center h5" th:text="*{eventPlace}">田中システムズ</td>
-							                            </tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">内容:</th>
-															<td class="col-7 text-center h5" th:each="c : *{Content}"
-													th:text="${c}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社名1:</th>
-															<td class="col-7 text-center h5"
-													th:text="*{corporateOneName}">田中システムズ</td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社1進める:</th>
-															<td class="col-7 text-center"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社名2:</th>
-															<td class="col-7 text-center h5"
-													th:text="*{corporateTwoName}">田中システムズ</td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社2進める:</th>
-															<td class="col-7 text-center"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社名3:</th>
-															<td class="col-7 text-center h5"
-													th:text="*{corporateThreeName}">田中システムズ</td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社3進める:</th>
-															<td class="col-7 text-center"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社名4:</th>
-															<td class="col-7 text-center h5"
-													th:text="*{corporateFourName}">田中システムズ</td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社4進める:</th>
-															<td class="col-7 text-center"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社名5:</th>
-															<td class="col-7 text-center h5"
-													th:text="*{corporateFiveName}">田中システムズ</td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">会社5進める:</th>
-															<td class="col-7 text-center"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">早退日時</th>
-															<td class="col-7 text-center h5"
-													th:text="*{#temporals.format(leaveDate, 'yyyy/MM/dd HH:mm')}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">欠席開始日</th>
-															<td class="col-7 text-center h5"
-													th:text="*{#temporals.format(absentStartDate, 'yyyy/MM/dd')}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">欠席開始日</th>
-															<td class="col-7 text-center h5"
-													th:text="*{#temporals.format(absentEndDate, 'yyyy/MM/dd')}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">遅刻日時</th>
-															<td class="col-7 text-center h5"
-													th:text="*{#temporals.format(delayDate, 'yyyy/MM/dd HH:mm')}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">メモ</th>
-															<td class="col-7 text-center h5" th:utext="*{memo} ?: _"></td>
-														</tr>
-														
+				<div class="modal fade" th:id="'id' + ${requestList.requestId}"
+					tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-scrollable modal-lg"
+						role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalScrollableTitle">確認</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="閉じる">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div th:if="${requestList.docType[0] == '0'}">
 
-													</tbody>
-												</table>
-												</div>
-												<div th:if="${requestList.docType[0] == '1'}">
-											
-							                    <table class="table table-borderless" th:object="${requestList.reportDoc}">
-													<tbody>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">企業名：</th>
-															<td class="col-7 text-center h5" th:text="*{corporateName}">田中システムズ</td>
-															
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">知った方式:</th>
-															<td class="col-7 text-center h5" th:text="*{knownMethod}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">イベント日時:</th>
-															<td class="col-7 text-center h5"
-																th:text="*{#temporals.format(eventDate, 'yyyy/MM/dd HH:mm')}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">イベント場所:</th>
-															<td class="col-7 text-center h5" th:text="*{eventPlace}">田中システムズ</td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">通知日数:</th>
-															<td class="col-7 text-center h5"
-																th:text="*{#numbers.formatInteger(noticeDays, 0, 'COMMA')}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">通知先:</th>
-															<td class="col-7 text-center h5" th:text="*{noticeTarget}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">通知方式:</th>
-															<td class="col-7 text-center h5" th:text="*{noticeMethod}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">何次試験:</th>
-															<td class="col-7 text-center h5"
-																th:text="*{#numbers.formatInteger(examTimes, 0, 'COMMA')}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">試験内容（Multi）:</th>
-															<td class="col-7 text-center h5" th:each="c : *{examContent}"
-																th:text="${c}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">面接内容（Multi）:</th>
-															<td class="col-7 text-center h5"
-																th:each="c : *{interviewContent}" th:text="${c}"></td>
-														</tr>
-														<tr class="row">
-															<th class="offset-1 col-3 text-right">メモ</th>
-															<td class="col-7 text-center h5" th:utext="*{memo} ?: _">(Not
-																entered)</td>
-														</tr>
-													</tbody>
-												</table>
-												</div>
-											</div>
-											<div class="modal-footer">
-												<form th:action="@{/teacher/home}" method="post">
-													<input type="hidden" name="requestId"
-											th:value="${requestList.requestId}" />
-													<input type="hidden" name="consent"
-											th:value="${requestList.consent}" />
-													<button type="submit" name="cancel" class="btn btn-danger">拒否</button>
-													<button type="submit" name="submit" class="btn btn-primary">承認</button>
-												</form> 
-											</div>
-										</div>
-									</div>
+									<table class="table table-borderless"
+										th:object="${requestList.requestDoc}">
+										<tbody>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">イベント開始日時:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#temporals.format(eventStartDate, 'yyyy年MM月dd日 HH:mm')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">イベント終了日時:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#temporals.format(eventEndDate, 'yyyy年MM月dd日 HH:mm')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">イベント場所:</th>
+												<td class="col-7 text-center h5" th:text="*{eventPlace}">田中システムズ</td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">内容:</th>
+												<td class="col-7 text-center h5" th:each="c : *{Content}"
+													th:text="${c}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社名1:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{corporateOneName}">田中システムズ</td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社1進める:</th>
+												<td class="col-7 text-center"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社名2:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{corporateTwoName}">田中システムズ</td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社2進める:</th>
+												<td class="col-7 text-center"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社名3:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{corporateThreeName}">田中システムズ</td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社3進める:</th>
+												<td class="col-7 text-center"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社名4:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{corporateFourName}">田中システムズ</td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社4進める:</th>
+												<td class="col-7 text-center"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社名5:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{corporateFiveName}">田中システムズ</td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">会社5進める:</th>
+												<td class="col-7 text-center"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">早退日時</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#temporals.format(leaveDate, 'yyyy年MM月dd日 HH:mm')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">欠席開始日</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#dates.format(absentStartDate, 'yyyy年MM月dd日')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">欠席開始日</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#dates.format(absentEndDate, 'yyyy年MM月dd日')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">遅刻日時</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#temporals.format(delayDate, 'yyyy年MM月dd日 HH:mm')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">メモ</th>
+												<td class="col-7 text-center h5" th:utext="*{memo} ?: _"></td>
+											</tr>
+
+
+										</tbody>
+									</table>
 								</div>
+								<div th:if="${requestList.docType[0] == '1'}">
+
+									<table class="table table-borderless"
+										th:object="${requestList.reportDoc}">
+										<tbody>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">企業名：</th>
+												<td class="col-7 text-center h5" th:text="*{corporateName}">田中システムズ</td>
+
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">知った方式:</th>
+												<td class="col-7 text-center h5" th:text="*{knownMethod}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">イベント日時:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#temporals.format(eventDate, 'yyyy年MM月dd日 HH:mm')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">イベント場所:</th>
+												<td class="col-7 text-center h5" th:text="*{eventPlace}">田中システムズ</td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">通知日数:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#numbers.formatInteger(noticeDays, 0, 'COMMA')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">通知先:</th>
+												<td class="col-7 text-center h5" th:text="*{noticeTarget}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">通知方式:</th>
+												<td class="col-7 text-center h5" th:text="*{noticeMethod}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">何次試験:</th>
+												<td class="col-7 text-center h5"
+													th:text="*{#numbers.formatInteger(examTimes, 0, 'COMMA')}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">試験内容（Multi）:</th>
+												<td class="col-7 text-center h5"
+													th:each="c : *{examContent}" th:text="${c}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">面接内容（Multi）:</th>
+												<td class="col-7 text-center h5"
+													th:each="c : *{interviewContent}" th:text="${c}"></td>
+											</tr>
+											<tr class="row">
+												<th class="offset-1 col-3 text-right">メモ</th>
+												<td class="col-7 text-center h5" th:utext="*{memo} ?: _">(Not
+													entered)</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<form th:action="@{/teacher/home}" method="post">
+									<input type="hidden" name="requestId"
+										th:value="${requestList.requestId}" /> <input type="hidden"
+										name="consent" th:value="${requestList.consent}" />
+									<button type="submit" name="cancel" class="btn btn-danger">拒否</button>
+									<button type="submit" name="submit" class="btn btn-primary">承認</button>
+								</form>
+							</div>
 						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-<script>
-	$(function(){
-		$("tr:has(td.submit)").addClass("table-info");
-		$("tr:has(td.cancel)").addClass("table-danger");
-		$("tr:has(td.end)").addClass("table-active");
-	});
+	</div>
+	<script>
+		$(function() {
+			$("tr:has(td.submit)").addClass("table-info");
+			$("tr:has(td.cancel)").addClass("table-danger");
+			$("tr:has(td.end)").addClass("table-active");
+		});
 	</script>
 </body>
 

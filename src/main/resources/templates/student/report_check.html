@@ -77,7 +77,7 @@
 							<tr class="row">
 								<th class="offset-1 col-3 text-right">イベント日時:</th>
 								<td class="col-7 text-center h5"
-									th:text="*{#temporals.format(eventDate, 'yyyy/MM/dd HH:mm')}"></td>
+									th:text="*{#temporals.format(eventDate, 'yyyy年MM月dd日 HH:mm')}"></td>
 							</tr>
 							<tr class="row">
 								<th class="offset-1 col-3 text-right">イベント場所:</th>
@@ -112,7 +112,7 @@
 									th:each="c : *{interviewContent}" th:text="${c}"></td>
 							</tr>
 							<tr class="row">
-								<th class="offset-1 col-3 text-right">メモ</th>
+								<th class="offset-1 col-3 text-right">メモ:</th>
 								<td class="col-7 text-center h5" th:utext="*{memo} ?: _">(Not
 									entered)</td>
 							</tr>

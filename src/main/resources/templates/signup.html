@@ -42,7 +42,7 @@
                         <div class="form-box row pt-3">
                             <form th:action="@{/signup}" th:object="${user}" method="post" class="offset-2 col-8">
                                 学籍番号
-                                <input th:field="*{userId}" type="text" placeholder="s20160001">
+                                <input id="userId" th:field="*{userId}" type="text" placeholder="s20160001">
                                 名前
                                 <input th:field="*{userName}" type="text" placeholder="名前">
                                 パスワード
@@ -50,17 +50,17 @@
                                 <label class="text-left">パスワード再入力</label>
                                 <input name="password-retype" type="password" placeholder="password再入力">
                                 <label class="text-left">クラス</label>
-                                <input th:field="*{className}" class="col-4" type="text" placeholder="R4A1">
+                                <input th:field="*{className}" class="col-4" type="text" placeholder="RxAx">
                                 <label class="text-left">出席番号</label>
-                                <input th:field="*{classNumber}" class="col-2" type="text" placeholder="14">
+                                <input th:field="*{classNumber}" class="col-2" type="text" placeholder="xx">
 								<label class="text-left">あいことば</label>
                                 <input th:field="*{watchWord}" type="text" placeholder="あいことば">
                                 <div class="btn-group btn-group-toggle mx-auto w-100 pt-2" data-toggle="buttons">
-                                    <label class="btn btn-secondary active">
+                                    <label class="btn btn-outline-primary active">
                                         <input type="radio" name="options" id="option1" autocomplete="off" value="STUDENT" th:field="*{role}"	> 学生
                                     </label>
                                     
-                                    <label class="btn btn-secondary">
+                                    <label class="btn btn-outline-primary">
                                         <input type="radio" name="options" id="option2" autocomplete="off" value="TEACHER" th:field="*{role}"> 教員
                                     </label>
                                 </div>

@@ -61,12 +61,12 @@
                             <tr class="row">
                                 <th class="offset-1 col-3 text-right">イベント開始日時:</th>
                                 <td class="col-7 text-center h5"
-									th:text="*{#temporals.format(eventStartDate, 'yyyy/MM/dd HH:mm')}"></td>
+									th:text="*{#temporals.format(eventStartDate, 'yyyy年MM月dd日 HH:mm')}"></td>
 							</tr>
                             <tr class="row">
                                 <th class="offset-1 col-3 text-right">イベント終了日時:</th>
                                 <td class="col-7 text-center h5"
-									th:text="*{#temporals.format(eventEndDate, 'yyyy/MM/dd HH:mm')}"></td>
+									th:text="*{#temporals.format(eventEndDate, 'yyyy年MM月dd日 HH:mm')}"></td>
 							</tr>
                             <tr class="row">
                                 <th class="offset-1 col-3 text-right">イベント場所:</th>
@@ -118,27 +118,27 @@
                                 <td class="col-7 text-center"></td>
                             </tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">早退日時</th>
+                                <th class="offset-1 col-3 text-right">早退日時:</th>
                                 <td class="col-7 text-center h5"
-									th:text="*{#temporals.format(leaveDate, 'yyyy/MM/dd HH:mm')}"></td>
+									th:text="*{#temporals.format(leaveDate, 'yyyy年MM月dd日 HH:mm')}"></td>
 							</tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">欠席開始日</th>
+                                <th class="offset-1 col-3 text-right">欠席開始日:</th>
                                 <td class="col-7 text-center h5"
-									th:text="*{#temporals.format(absentStartDate, 'yyyy/MM/dd')}"></td>
+									th:text="*{#dates.format(absentStartDate, 'yyyy年MM月dd日')}"></td>
 							</tr>
 							 <tr class="row">
-                                <th class="offset-1 col-3 text-right">欠席開始日</th>
+                                <th class="offset-1 col-3 text-right">欠席開始日:</th>
                                 <td class="col-7 text-center h5"
-									th:text="*{#temporals.format(absentEndDate, 'yyyy/MM/dd')}"></td>
+									th:text="*{#dates.format(absentEndDate, 'yyyy年MM月dd日')}"></td>
 							</tr>
                             <tr class="row">
-                                <th class="offset-1 col-3 text-right">遅刻日時</th>
+                                <th class="offset-1 col-3 text-right">遅刻日時:</th>
                                 <td class="col-7 text-center h5"
-									th:text="*{#temporals.format(delayDate, 'yyyy/MM/dd HH:mm')}"></td>
+									th:text="*{#temporals.format(delayDate, 'yyyy年MM月dd日 HH:mm')}"></td>
 							</tr>
                             <tr class="row">
-								<th class="offset-1 col-3 text-right">メモ</th>
+								<th class="offset-1 col-3 text-right">メモ:</th>
 								<td class="col-7 text-center h5" th:utext="*{memo} ?: _"></td>
 							</tr>
                             <tr class="row">

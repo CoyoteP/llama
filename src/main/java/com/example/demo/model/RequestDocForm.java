@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,11 +60,11 @@ public class RequestDocForm implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime leaveDate;
 
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private LocalDate absentStartDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date absentStartDate;
 
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private LocalDate absentEndDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date absentEndDate;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime delayDate;

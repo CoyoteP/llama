@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -60,9 +61,9 @@ public class RequestDoc implements Serializable {
 
 	private LocalDateTime leaveDate;
 
-	private LocalDate absentStartDate;
+	private Date absentStartDate;
 
-	private LocalDate absentEndDate;
+	private Date absentEndDate;
 
 	private LocalDateTime delayDate;
 
