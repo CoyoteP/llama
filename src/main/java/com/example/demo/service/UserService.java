@@ -31,8 +31,16 @@ public class UserService {
 		List<User> users = userRepo.findByEnableAndRole("0","STUDENT");
 		return users;
 	}
+	public List<User> getRequestTeachers() {
+		List<User> users = userRepo.findByEnableAndRole("0","TEACHER");
+		return users;
+	}
 	public List<User> getSubmitStudents() {
 		List<User> users = userRepo.findByEnableAndRole("1","STUDENT");
+		return users;
+	}
+	public List<User> getSubmitTeachers() {
+		List<User> users = userRepo.findByEnableAndRole("1","TEACHER");
 		return users;
 	}
 	public boolean enable(String userId) {

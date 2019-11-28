@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
 <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap-theme.min.css}"/>
-    
-<link rel="stylesheet" href="../css/open-iconic-bootstrap.css" th:href="@{/font/css/open-iconic-bootstrap.css}">
+    <link rel="stylesheet" href="../css/open-iconic-bootstrap.css" th:href="@{/font/css/open-iconic-bootstrap.css}">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -56,25 +55,31 @@
         </nav>
     </div>
     <div class="wrapper">
-        <div class="chat-container col-4">
-            <div class="left">
-                <div class="top">
-                    <a href="javascript:;" class="search" onClick="window.location.reload();"><span class="oi oi-reload w-10 h-10"></span></a>
+        <div class="chat-container col-6">
+            <div class="right">
+                <div class="top"><a href="/teacher/chat" th:href="@{/teacher/chat}"><span class="oi oi-arrow-left"></span></a>　<span><span class="name">辻 雄文</span></span></div>
+                <div class="chat" data-chat="person1">
+                    <div class="conversation-start">
+                        <span>2018/03/03</span>
+                    </div>
+                    <div class="bubble you">
+                        申請書はメモ欄にイベント名を書いてください。
+                    </div>
                 </div>
-                <ul class="people">
-                    <li class="person" data-chat="person1">
-                        <span class="name">斎藤 一</span><br />
-                        <span class="time">2018/03/03</span><br />
-                        <span class="preview">申請書はメモ欄にイベント名を書いてください。</span>
-                    </li>
-                    <li class="person" data-chat="person1">
-                        <span class="name">田中 雄二</span><br />
-                        <span class="time">3:03 PM</span><br />
-                        <span class="preview">はい。</span>
-                    </li>
+                <div class="chat" data-chat="person2">
+                    <div class="conversation-start">
+                        <span>Today, 5:38 PM</span>
+                    </div>
+                    <div class="bubble you">
+                        承知しました。
+                    </div>
                     
-                </ul>
+                </div>
                 
+                <div class="write">
+                    <input type="text" />
+                    <a href="javascript:;" class="write-link send"></a>
+                </div>
             </div>
             
         </div>

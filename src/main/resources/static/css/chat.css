@@ -27,7 +27,7 @@ font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue"
   position: relative;
   left: 50%;
   
-  height: 800px;
+  height: 550px;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
 }

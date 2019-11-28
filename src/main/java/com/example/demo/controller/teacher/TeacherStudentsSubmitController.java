@@ -25,7 +25,7 @@ public class TeacherStudentsSubmitController {
 
 		List<User> users = userService.getRequestStudents();
 		model.addAttribute("users",users);
-		return "teacher/signup_request";
+		return "teacher/students_signup_manager";
 	}
 	
 	@PostMapping("teacher/signup_request")
@@ -38,6 +38,6 @@ public class TeacherStudentsSubmitController {
 			model.addAttribute("error", "ユーザ登録に失敗しました。");
 			System.out.println("error");
 		}
-		return "teacher/signup_request";
+		return "redirect:/teacher/signup_request";
 	}
 }

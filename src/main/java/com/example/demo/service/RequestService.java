@@ -41,11 +41,11 @@ public class RequestService {
 		}
 	}
 	public List<Request> getListOfStudent(String studentId) {
-		List<Request> list = reqRepo.findByStudentUserId(studentId);
+		List<Request> list = reqRepo.findByStudentUserIdOrderByRequestIdDesc(studentId);
 		return list;
 	}
 	public List<Request> getListOfTeacher(String teacherId) {
-		List<Request> list = reqRepo.findByTeacherUserId(teacherId);
+		List<Request> list = reqRepo.findByTeacherUserIdOrderByRequestIdDesc(teacherId);
 		System.out.println(list.size());
 		return list;
 	}

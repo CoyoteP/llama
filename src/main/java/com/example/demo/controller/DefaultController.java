@@ -28,7 +28,7 @@ public class DefaultController {
 		} else if (role.equals("TEACHER")) {
 			return "redirect:/teacher/home";
 		} else if (role.equals("ADMIN")) {
-			return "redirect:/admin/home";
+			return "redirect:/admin/teachers_signup_manager";
 		} else {
 			return "ques";
 		}

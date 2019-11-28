@@ -22,13 +22,13 @@
             <div class="collapse navbar-collapse" id="Navber">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">学生管理</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">教員管理</a>
+                        <a class="nav-link" th:href="@{/admin/teachers_signup_manager}">教員登録</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">教員登録</a>
+                        <a class="nav-link" th:href="@{/admin/teachers_manager}">教員管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin/students_manager}">学生管理</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
@@ -74,53 +74,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
-                                </td>
-                            </tr>
-                            <tr class="table-info">
-                                <td>s20191001</td>
-                                <td>R3Ax</td>
-                                <td>斎藤健介</td>
-                                <td><a class="btn-sm btn-primary" href="#" role="button">修正</a>
+                            <tr class="table-info" th:each="user:${users}">
+                                <td th:text="${user.userId}">ID</td>
+                                <td th:text="${user.className}">クラス</td>
+                                <td th:text="${user.userName}">名前</td>
+                                <td><a class="btn-sm btn-primary" href="#"
+								data-toggle="modal" th:attr="data-target='#id' + ${user.userId}" 
+									role="button">確認</a>
                                 </td>
                             </tr>
 

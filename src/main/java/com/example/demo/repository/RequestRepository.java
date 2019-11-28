@@ -17,9 +17,9 @@ import com.example.demo.model.User;
 @Repository
 public interface RequestRepository extends JpaRepository<Request, String> {
 	
-	List<Request> findByStudentUserId(@Param("userId") String studentId);
+	List<Request> findByStudentUserIdOrderByRequestIdDesc(@Param("userId") String studentId);
 	
-	List<Request> findByTeacherUserId(@Param("userId") String teacherId);
+	List<Request> findByTeacherUserIdOrderByRequestIdDesc(@Param("userId") String teacherId);
 
     @Modifying
 	@Query("update Request v set v.consent = :consent where v.requestId = :requestId")

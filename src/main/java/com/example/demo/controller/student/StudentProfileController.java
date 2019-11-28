@@ -5,16 +5,17 @@ import java.security.Principal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class StudentChatController {
-	@GetMapping("student/chat")
+public class StudentProfileController {
+	@GetMapping("student/profile")
     public String get(Model model,Principal principal) {
-		return "student/chat";
-
+		return "student/profile";
 	}
-	@GetMapping("student/chat_message")
-    public String message(Model model,Principal principal) {
-		return "student/chat_message";
+	
+	@PostMapping("student/profile")
+    public String post(Model model,Principal principal) {
+		return "student/profile";
 	}
 }

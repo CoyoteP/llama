@@ -43,13 +43,13 @@ public class ReportDoc implements Serializable {
 	
 	private String eventPlace;
 	
-	private String noticeDays;
+	private Integer noticeDays;
 
 	private String noticeTarget;
 
 	private String noticeMethod;
 
-	private String examTimes;
+	private Integer examTimes;
 
 	private String examContent;
 

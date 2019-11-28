@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -51,10 +52,10 @@ public class ReportDocService {
 		doc.setKnownMethod(form.getKnownMethod());
 		doc.setEventDate(form.getEventDate());
 		doc.setEventPlace(form.getEventPlace());
-		doc.setNoticeDays(form.getNoticeDays().toString());
+		doc.setNoticeDays(form.getNoticeDays());
 		doc.setNoticeTarget(form.getNoticeTarget());
 		doc.setNoticeMethod(form.getNoticeMethod());
-		doc.setExamTimes(form.getExamTimes().toString());
+		doc.setExamTimes(form.getExamTimes());
 		doc.setExamContent(form.getExamContent());
 		doc.setInterviewContent(form.getInterviewContent());
 		doc.setMemo(form.getMemo());
@@ -102,10 +103,10 @@ public class ReportDocService {
 		form.setKnownMethod(doc.getKnownMethod());
 		form.setEventDate(doc.getEventDate());
 		form.setEventPlace(doc.getEventPlace());
-		form.setNoticeDays(Integer.parseInt(doc.getNoticeDays()));
+		form.setNoticeDays(doc.getNoticeDays());
 		form.setNoticeTarget(doc.getNoticeTarget());
 		form.setNoticeMethod(doc.getNoticeTarget());
-		form.setExamTimes(Integer.parseInt(doc.getExamTimes()));
+		form.setExamTimes(doc.getExamTimes());
 		form.setExamContent(doc.getExamContent());
 		form.setInterviewContent(doc.getInterviewContent());
 		form.setMemo(doc.getMemo());
@@ -119,7 +120,10 @@ public class ReportDocService {
 	public List<ReportDoc> getLogs() {
 		List<Integer> requests = reqRepo.getLogReportDocIds();
 		System.out.println("ookisa:" + requests);
-		List<ReportDoc> list = repoDocRepo.getLogReports(requests);
+		List<ReportDoc> list = new ArrayList<ReportDoc>();
+		if(requests.size() > 0) {
+			list = repoDocRepo.getLogReports(requests);
+		}
 		return list;
 	}
 
