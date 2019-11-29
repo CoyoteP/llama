@@ -40,22 +40,26 @@
     </div>
   </div>
   <script src="/webjars/jquery/3.3.1/jquery.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
-  <script src="/webjars/stomp-websocket/2.3.3-1/stomp.js" th:src="@{/webjars/stomp-websocket/2.3.3-1/stomp.js}"></script>
+  <script src="/webjars/stomp-websocket/2.3.3/stomp.js" th:src="@{/webjars/stomp-websocket/2.3.3/stomp.js}"></script>
+  <script src="/webjars/sockjs-client/1.0.2/sockjs.js" th:src="@{/webjars/sockjs-client/1.0.2/sockjs.js}"></script>
+  
   <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
   <script>
     $(function() {
       var endpoint = 'ws://' + location.host + '/endpoint';
       var subscribePrefix = '/topic/';
       var stompClient = null;
+      var socket = new SockJS('/endpoint');
 
       $('#connectButton').click(function() {
 
         $("#messageList").empty();
+        var socket = new SockJS('/endpoint');
 
-        stompClient = Stomp.over(new WebSocket(endpoint));
+        stompClient = Stomp.over(socket);
         stompClient.connect({}, function() {
           stompClient.subscribe(
-              subscribePrefix + $('#roomName').val(),
+              subscribePrefix + 'endpoint/' + $('#roomName').val(),
               function(message) {
                 $('#messageList').prepend($('<li>').text(message.body));
               });
@@ -82,7 +86,7 @@
           return;
         }
 
-        stompClient.send(subscribePrefix + $('#roomName').val(), {}, $('#message').val());
+        stompClient.send("/app/endpoint/" + $('#roomName').val(), {},JSON.stringify({'message': $('#message').val()}) );
       });
     });
   </script>

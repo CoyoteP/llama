@@ -24,6 +24,9 @@ public class SignupController {
 
 	@PostMapping("signup")
 	public String post(Model model,@ModelAttribute User user) {
+		if(user.getRole() == null) {
+			user.setRole("STUDENT");
+		}
 		if (userService.save(user)) {
 			model.addAttribute("success", "ユーザ登録要求の承認を行いました。");
 			System.out.println("success");

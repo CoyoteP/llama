@@ -75,4 +75,19 @@ public class RequestService {
 			return "miss:sql";
 		}		
 	}
+	public int[] count(List<Request> list) {
+		int[] count = {0,0,0,0};
+		for(Request req:list) {
+			if(req.getConsent().equals("0") || req.getConsent().equals("3")) {
+				count[0] += 1;
+			}else if(req.getConsent().equals("2")) {
+				count[1] += 1;
+			}else if(req.getConsent().equals("1") || req.getConsent().equals("4")) {
+				count[2] += 1;
+			}else if(req.getConsent().equals("5")) {
+				count[3] += 1;
+			}
+		}
+		return count;
+	}
 }

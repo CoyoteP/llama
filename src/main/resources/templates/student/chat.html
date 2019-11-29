@@ -62,16 +62,15 @@
                     <a href="javascript:;" class="search" onClick="window.location.reload();"><span class="oi oi-reload w-10 h-10"></span></a>
                 </div>
                 <ul class="people">
-                    <li class="person" data-chat="person1">
-                        <span class="name">斎藤 一</span><br />
-                        <span class="time">2018/03/03</span><br />
-                        <span class="preview">申請書はメモ欄にイベント名を書いてください。</span>
-                    </li>
-                    <li class="person" data-chat="person1">
-                        <span class="name">田中 雄二</span><br />
-                        <span class="time">2018/03/03</span><br />
-                        <span class="preview">はい。</span>
-                    </li>
+                	<div th:each="chat:${chatList}">
+	                    <li class="person">
+	                    	<a th:href="@{/student/chat_message(teacherId=${chat.userId})}" style="display:block;"></a>
+	                        <span class="name" th:text="${chat.userName}">斎藤 一</span><br />
+	                        <span class="time" th:text="*{#dates.format(chat.sendDate, 'yyyy年MM月dd日')}">2018/03/03</span><br />
+	                        <span class="preview" th:text="${chat.message}">申請書はメモ欄にイベント名を書いてください。</span>
+	                    </li>
+                    </div>
+                    
                     
                 </ul>
                 
@@ -79,6 +78,13 @@
             
         </div>
     </div>
-        <script src="../js/chat.js" th:src="@{/js/chat.js}"></script>
+    <script type="text/javascript" th:inline="javascript">
+    $('li').click(function(){
+        let href = $(this).children('a').attr('href');
+        location.href = href;
+        // window.open(href);
+    });
+    
+    </script>
 
 </body></html>

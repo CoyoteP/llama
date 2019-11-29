@@ -42,22 +42,22 @@
                         <div class="form-box row pt-3">
                             <form th:action="@{/signup}" th:object="${user}" method="post" class="offset-2 col-8">
                                 学籍番号
-                                <input id="userId" th:field="*{userId}" type="text" placeholder="s20160001">
+                                <input id="userId" th:field="*{userId}" type="text" placeholder="s20160001" minlength="8" maxlength="9" required>
                                 名前
-                                <input th:field="*{userName}" type="text" placeholder="名前">
+                                <input th:field="*{userName}" type="text" placeholder="名前" required>
                                 パスワード
-                                <input th:field="*{password}" type="password" class="pt-1" placeholder="password">
+                                <input id="password" name="password" th:field="*{password}" type="password" class="pt-1" placeholder="password" required>
                                 <label class="text-left">パスワード再入力</label>
-                                <input name="password-retype" type="password" placeholder="password再入力">
+                                <input id="password-retype" name="password-retype" type="password" placeholder="password再入力" onInput="CheckPassword(this);" required>
                                 <label class="text-left">クラス</label>
-                                <input th:field="*{className}" class="col-4" type="text" placeholder="RxAx">
+                                <input th:field="*{className}" class="col-4" type="text" placeholder="RxAx" minlength="4" maxlength="4" required>
                                 <label class="text-left">出席番号</label>
-                                <input th:field="*{classNumber}" class="col-2" type="text" placeholder="xx">
+                                <input th:field="*{classNumber}" class="col-2" type="text" placeholder="xx" pattern="\d{2}}">
 								<label class="text-left">あいことば</label>
                                 <input th:field="*{watchWord}" type="text" placeholder="あいことば">
                                 <div class="btn-group btn-group-toggle mx-auto w-100 pt-2" data-toggle="buttons">
                                     <label class="btn btn-outline-primary active">
-                                        <input type="radio" name="options" id="option1" autocomplete="off" value="STUDENT" th:field="*{role}"	> 学生
+                                        <input type="radio" name="options" id="option1" autocomplete="off" value="STUDENT" th:field="*{role}"> 学生
                                     </label>
                                     
                                     <label class="btn btn-outline-primary">
@@ -73,6 +73,19 @@
             </div>
 
         </div>
+        <script>
+		var pass = document.getElementById('password');
+		var passRe = document.getElementById('password-retype');
+		
+		passRe.addEventListener("input", function() {
+		    if (pass.value != passRe.value) {
+		    	passRe.setCustomValidity("パスワードが一致しません。");
+		    } else {
+		    	passRe.setCustomValidity('');
+		    }
+		});
+		
+</script>	
     </body>
 
     </html>

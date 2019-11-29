@@ -66,4 +66,8 @@ public class UserService {
 
 		return teacher.getUserName();
 	}
+	public User findByUserId(String userId) {
+		User user = userRepo.findByUserId(userId);
+		return user;
+	}
 }

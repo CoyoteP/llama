@@ -110,10 +110,10 @@
 												<div class="modal-body">
 													<div class="form-group">
 													    <label for="exampleInputEmail1">パスワード</label>
-													    <input type="password" class="form-control" id="password" placeholder="パスワード">
+													    <input type="password" class="form-control" id="password" placeholder="パスワード" required>
 													</div><div class="form-group">
 													    <label for="exampleInputEmail1">パスワード再入力</label>
-													    <input type="password" class="form-control" id="passwordRetype" placeholder="パスワード再入力">
+													    <input type="password" class="form-control" id="password-retype" placeholder="パスワード再入力" required>
 													</div>
 												</div>
 												<div class="modal-footer">
@@ -130,4 +130,17 @@
             </div>
         </div>
     </div>
+    <script>
+		var pass = document.getElementById('password');
+		var passRe = document.getElementById('password-retype');
+		
+		passRe.addEventListener("input", function() {
+		    if (pass.value != passRe.value1) {
+		    	passRe.setCustomValidity("パスワードが一致しません。");
+		    } else {
+		    	passRe.setCustomValidity('');
+		    }
+		});
+		
+</script>	
 </body></html>

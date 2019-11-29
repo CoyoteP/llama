@@ -70,16 +70,16 @@
 
 						<div class="float-left">
 							<button type="button" class="btn btn-light">
-								承認待ち <span class="badge badge-light">1</span>
+								承認待ち <span class="badge badge-light" th:text="${count[0]}">1</span>
 							</button>
 							<button type="button" class="btn btn-primary">
-								承認 <span class="badge badge-light">1</span>
+								承認 <span class="badge badge-light" th:text="${count[1]}">1</span>
 							</button>
 							<button type="button" class="btn btn-danger">
-								拒否 <span class="badge badge-light">1</span>
+								拒否 <span class="badge badge-light" th:text="${count[2]}">1</span>
 							</button>
 							<button type="button" class="btn btn-secondary">
-								完了 <span class="badge badge-light">1</span>
+								完了 <span class="badge badge-light" th:text="${count[3]}">1</span>
 							</button>
 						</div>
 						<div class="float-right">

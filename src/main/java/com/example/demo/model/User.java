@@ -42,5 +42,11 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="teacher")
     private List<Request> requestsOfTeacher;
 	
+	@OneToMany(mappedBy="student")
+    private List<Message> messagesOfStudent;
+	
+	@OneToMany(mappedBy="teacher")
+    private List<Message> messagesOfTeacher;
+	
 
 }

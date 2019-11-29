@@ -62,14 +62,14 @@
                         <div class="form-group">
                             <div class="form-group">
                                 <label><h5>企業名</h5></label>
-                                <input type="text" class="form-control" id="inputText" name="corporateName" th:field="*{corporateName}" placeholder="株式会社田中システムズ"/>
+                                <input type="text" class="form-control" id="inputText" name="corporateName" th:field="*{corporateName}" placeholder="株式会社田中システムズ" required/>
                             </div>
                         </div>
                         <div class="form-group">
             				<label class="control-label"><h5>知った方式</h5></label>
             					<div class="custom-control custom-radio" th:each="item : ${knownMethods}">
               					
-                					<input type="radio" class="custom-control-input" name="fradio" th:value="${item.value}" th:field="*{knownMethod}"></input>
+                					<input type="radio" class="custom-control-input knownMethod" name="fradio" th:value="${item.value}" th:field="*{knownMethod}" required></input>
 	              						<label class="custom-control-label" th:for="${#ids.prev('knownMethod')}"　th:text="${item.key}"></label>
               						
             					</div>
@@ -77,13 +77,13 @@
         				</div>
         				<div class="form-group">
                             <label><h5>イベント日時</h5></label>
-            				<input type="datetime-local" class="form-control" id="eventDate" name="eventDate" th:field="*{eventDate}" />
+            				<input type="datetime-local" class="form-control" id="eventDate" name="eventDate" th:field="*{eventDate}" required/>
             				<span th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}" class="help-block">error!</span>
           				</div>
                        <div class="form-group">
                             <div class="form-group">
                                 <label><h5>イベント施設名</h5></label>
-                                <input type="text" class="form-control" id="eventPlace" name="eventPlace" th:field="*{eventPlace}" placeholder="EDCタワー 100階"/>
+                                <input type="text" class="form-control" id="eventPlace" name="eventPlace" th:field="*{eventPlace}" placeholder="EDCタワー 100階" required/>
                             </div>
                         </div>
                         <div class="form-group">
@@ -145,7 +145,6 @@
                         <div class="form-group">
         					<label class="control-label" for="teacherName">承認先</label>
         					<select class="custom-select d-block w-100" th:field="*{teacherName}">
-            					<option value="">---</option>
             					<option th:each="item : ${teacherNames}" th:value="${item.value}" th:text="${item.key}">pulldown</option>
         					</select>
         					<div th:if="${#fields.hasErrors('teacherName')}" th:errors="*{teacherName}" class="help-block">error</div>
@@ -159,6 +158,16 @@
             </div>
         </div>
     </div>
+    <script>
+    let checkedsum; //チェックが入っている個数
+    $('.knownMethod').on("click",function(){
+       checkedsum = $('.knownMethod:checked').length; //チェックが入っているチェックボックスの取得
+       if( checkedsum > 0 ){
+            $('.knownMethod').prop("required",false); //required属性の解除
+       }else{
+            $('.knownMethod').prop("required",true); //required属性の付与
+       }
+    });</script>
 </body>
 
 </html>

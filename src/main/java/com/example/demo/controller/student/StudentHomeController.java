@@ -26,21 +26,10 @@ public class StudentHomeController {
 	@GetMapping("student/home")
     public String get(Model model,Principal principal) {
 		List<Request> list = reqService.getListOfStudent(principal.getName());
+		int[] count = reqService.count(list);
 		model.addAttribute("list",list);
+		model.addAttribute("count",count);
 		return "student/home";
 	}
-	@GetMapping("student/home2")
-    public String get2(Model model,Principal principal) {
-		System.out.println(principal.getName());
-		//List<RequestList> list = reqService.gerListOfStudent(principal.getName());
-		//model.addAttribute("list",list);
-		return "student/home2";
-	}
-	@GetMapping("student/home3")
-    public String get3(Model model,Principal principal) {
-		System.out.println(principal.getName());
-		//List<RequestList> list = reqService.gerListOfStudent(principal.getName());
-		//model.addAttribute("list",list);
-		return "student/home3";
-	}
+
 }

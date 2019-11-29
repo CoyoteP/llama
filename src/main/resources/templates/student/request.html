@@ -59,31 +59,35 @@
                     <form th:action="@{/student/request_check}" th:object="${requestDocForm}" method="post">
                     <div class="form-group">
                             <label><h5>イベント日時</h5></label>
-            				<input type="datetime-local" class="form-control" id="eventStartDate" name="eventStartDate" th:field="*{eventStartDate}" />
+            				<input type="datetime-local" class="form-control" id="eventStartDate" name="eventStartDate" th:field="*{eventStartDate}" required/>
             				<span th:if="${#fields.hasErrors('eventStartDate')}" th:errors="*{eventStartDate}" class="help-block">error!</span>
           					<label>から</label>
-          					<input type="datetime-local" class="form-control" id="eventEndDate" name="eventEndDate" th:field="*{eventEndDate}" />
+          					<input type="datetime-local" class="form-control" id="eventEndDate" name="eventEndDate" th:field="*{eventEndDate}" required/>
+          					<span th:if="${#fields.hasErrors('eventEndDate')}" th:errors="*{eventEndDate}" class="help-block">error!</span>
           					<label>まで</label>
           				</div>
                         <div class="form-group">
                             <div class="form-group">
                                 <label><h5>イベント施設名</h5></label>
-                                <input type="text" class="form-control" id="eventPlace" name="eventPlace" th:field="*{eventPlace}" placeholder="EDCタワー 100階"/>
+                                <input type="text" class="form-control" id="eventPlace" name="eventPlace" th:field="*{eventPlace}" placeholder="EDCタワー 100階" required/>
+                           		<span th:if="${#fields.hasErrors('eventPlace')}" th:errors="*{eventPlace}" class="help-block">error!</span>
+                           		
                             </div>
                         </div>
                         <div class="form-group">
             				<label class="control-label"><h5>内容</h5></label>
             					<div class="custom-control custom-checkbox" th:each="item : ${contents}">
               					
-                					<input type="checkbox" class="custom-control-input" name="content" th:value="${item.value}" th:field="*{content}"></input>
+                					<input type="checkbox" class="custom-control-input content" name="content" th:value="${item.value}" th:field="*{content}" required></input>
 	              						<label class="custom-control-label" th:for="${#ids.prev('content')}"　th:text="${item.key}"></label>
               						
             					</div>
-            				<span th:if="${#fields.hasErrors('Content')}" th:errors="*{Content}" class="help-block">error!</span>
+            				<span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="help-block">error!</span>
         				</div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">参加企業名</label>
-                                <input type="text" class="form-control" id="corporateOneName" name="corporateOneName" th:field="*{corporateOneName}" placeholder=""/>
+                                <input type="text" class="form-control" id="corporateOneName" name="corporateOneName" th:field="*{corporateOneName}" placeholder="" required/>
+                            	<span th:if="${#fields.hasErrors('corporateOneName')}" th:errors="*{corporateOneName}" class="help-block">error!</span>
                             <div class="form-check custom-control custom-checkbox">
                                 <input type="checkbox" class="form-check-input custom-control-input" value="" id="defaultCheck1">
                                 <label class="form-check-label custom-control-label" for="defaultCheck1">
@@ -145,7 +149,6 @@
                         <div class="form-group">
         					<label class="control-label" for="classTeacherName">承認先(担任)</label>
         					<select class="custom-select d-block w-100" th:field="*{classTeacherName}">
-            					<option value="">---</option>
             					<option th:each="item : ${classTeacherNames}" th:value="${item.value}" th:text="${item.key}">pulldown</option>
         					</select>
         					<div th:if="${#fields.hasErrors('classTeacherName')}" th:errors="*{classTeacherName}" class="help-block">error</div>
@@ -174,6 +177,16 @@
             </div>
         </div>
     </div>
+    <script>
+    let checkedsum; //チェックが入っている個数
+    $('.content').on("click",function(){
+       checkedsum = $('.content:checked').length; //チェックが入っているチェックボックスの取得
+       if( checkedsum > 0 ){
+            $('.content').prop("required",false); //required属性の解除
+       }else{
+            $('.content').prop("required",true); //required属性の付与
+       }
+    });</script>
 </body>
 
 </html>

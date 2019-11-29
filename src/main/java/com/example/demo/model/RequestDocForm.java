@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -24,19 +27,24 @@ public class RequestDocForm implements Serializable {
 	
 	private Integer requestDocId;
 	
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime eventStartDate;
 
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime eventEndDate;
 
+	@NotBlank
 	private String eventPlace;
 
+	@NotBlank
 	@Pattern(regexp = "on")
 	private String content;
 
 	private String[] contents;
 	
+	@NotBlank
 	private String corporateOneName;
 
 	private String corporateOneProgression;
@@ -71,6 +79,7 @@ public class RequestDocForm implements Serializable {
 
 	private String memo;
 
+	@NotBlank
 	private String classTeacherName;
 
 	private String[] classTeacherNames;

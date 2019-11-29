@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -27,14 +28,17 @@ public class ReportDocForm implements Serializable {
 
 	private Integer reportDocID;
 	
-	@NotNull
+	@NotBlank
 	private String corporateName;
 
+	@NotBlank
 	private String knownMethod;
 
+	@NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 	private LocalDateTime eventDate;
 
+    @NotBlank
 	private String eventPlace;
 
 	@Min(0)
@@ -60,6 +64,7 @@ public class ReportDocForm implements Serializable {
 
 	private String memo;
 
+	@NotBlank
 	private String teacherName;
 
 	private String[] teacherNames;

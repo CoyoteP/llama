@@ -22,16 +22,13 @@ public class TeacherHomeController {
 	
 	@Autowired
 	RequestService reqService;
-	
-	@GetMapping("teacher")
-    public String teacher(Model model,Principal principal) {
-		return "/teacher/home";
-	}
-	
+
 	
 	@GetMapping("/teacher/home")
     public String get(Model model,Principal principal) {
 		List<Request> list = reqService.getListOfTeacher(principal.getName());
+		int[] count = reqService.count(list);
+		model.addAttribute("count",count);
 		model.addAttribute("list",list);
 		return "/teacher/home";
 	}

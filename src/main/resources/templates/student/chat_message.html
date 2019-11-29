@@ -13,6 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="../css/chat.css" th:href="@{/css/chat.css}">
+    <script src="/webjars/stomp-websocket/2.3.3/stomp.js" th:src="@{/webjars/stomp-websocket/2.3.3/stomp.js}"></script>
+  	<script src="/webjars/sockjs-client/1.0.2/sockjs.js" th:src="@{/webjars/sockjs-client/1.0.2/sockjs.js}"></script>
+  
     <title>チャット</title>
 </head>
 
@@ -57,28 +60,24 @@
     <div class="wrapper">
         <div class="chat-container col-6">
             <div class="right">
-                <div class="top"><a href="/teacher/chat" th:href="@{/teacher/chat}"><span class="oi oi-arrow-left"></span></a>　<span><span class="name">斎藤 一</span></span></div>
-                <div class="chat" data-chat="person1">
-                    <div class="conversation-start">
-                        <span>2018/03/03</span>
+            	<input type="hidden" id="studentUserId" th:value="${student.userId}" />
+                <input type="hidden" id="teacherUserId" th:value="${teacher.userId}" />
+                <div class="top"><a href="/teacher/chat" th:href="@{/student/chat}"><span class="oi oi-arrow-left"></span></a>　<span><span class="name" th:text="${teacher.userName}">斎藤 一</span></span></div>
+                	
+                <div id="messageList" class="chat active-chat" >
+                    <div th:each="message:${messages}">
+	                    <div th:if="${message.sendBy == 'STUDENT'}" class="bubble me" >
+	                    	<p th:text="${message.message}" >
+	                    </div>
+	                    <div th:if="${message.sendBy == 'TEACHER'}" class="bubble you" >
+	                    	<p th:text="${message.message}" >
+	                    </div>
                     </div>
-                    <div class="bubble you">
-                        申請書はメモ欄にイベント名を書いてください。
-                    </div>
-                </div>
-                <div class="chat" data-chat="person2">
-                    <div class="conversation-start">
-                        <span>Today, 5:38 PM</span>
-                    </div>
-                    <div class="bubble you">
-                        承知しました。
-                    </div>
-                    
                 </div>
                 
                 <div class="write">
-                    <input type="text" />
-                    <a href="javascript:;" class="write-link send"></a>
+                    <input type="text" id="message" />
+                    <a id="sendButton" href="javascript:;" class="write-link send"></a>
                 </div>
             </div>
             
